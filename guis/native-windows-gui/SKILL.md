@@ -26,11 +26,6 @@ Before writing code, you must analyze the target GUI and mentally map it to NWG 
     *   Lists -> `nwg::ListBox`
     *   Toggles -> `nwg::CheckBox` or `nwg::RadioButton`
 
-## Phase 2: Cargo Feature Management
-**Crucial Step:** NWG heavily gates its controls behind feature flags to reduce compile times. If you use a control without enabling its feature, the code will fail to compile.
-
-*   *Always* specify features in `Cargo.toml`.
-*   Common features to remember: `["rich-textbox", "listbox", "combobox", "image-decoder", "datetime-picker"]`.
 
 ## Phase 3: Structuring the `NwgUi`
 When using `native-windows-derive`, the application is defined as a struct with `#[derive(Default, NwgUi)]`. 
