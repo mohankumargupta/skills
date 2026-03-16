@@ -20,7 +20,7 @@ Always ensure the correct dependencies and features are included. NWG heavily ga
 ```toml
 [dependencies]
 native-windows-derive = { git = "https://github.com/kambo-1st/native-windows-gui" }
-native-windows-gui = { git = "https://github.com/kambo-1st/native-windows-gui" }
+native-windows-gui = { git = "https://github.com/kambo-1st/native-windows-gui", default-features = true, features=["high-dpi"]  }
 
 [build-dependencies]
 embed-manifest = "1.5"
