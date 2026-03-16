@@ -21,7 +21,30 @@ Always ensure the correct dependencies and features are included. NWG heavily ga
 [dependencies]
 native-windows-derive = { git = "https://github.com/kambo-1st/native-windows-gui" }
 native-windows-gui = { git = "https://github.com/kambo-1st/native-windows-gui" }
+
+[build-dependencies]
+embed-manifest = "1.5"
+
 ```
+
+```rust
+//build.rs
+use embed_manifest::{embed_manifest, new_manifest};
+use embed_manifest::manifest::{ActiveCodePage, DpiAwareness};
+
+fn main() {
+    if std::env::var_os("CARGO_CFG_WINDOWS").is_some() {
+        embed_manifest(
+            new_manifest("mqtt-keyboard")
+                .active_code_page(ActiveCodePage::Utf8)
+                .dpi_awareness(DpiAwareness::PerMonitorV2)
+        ).expect("unable to embed manifest file");
+    }
+    println!("cargo:rerun-if-changed=build.rs");
+}
+
+```
+
 
 ## 2. Layout & Architecture Process
 When generating a UI, follow this mental model:
