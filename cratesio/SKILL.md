@@ -1,7 +1,6 @@
 ---
 name: cratesio
 description: Search crates.io for no_std + embedded-hal v1 compatible Rust crates (e.g., "find rust crate for sensor mpu6050", "find a rust crate for i2c display")
-version: 2.0.0
 ---
 
 # Skill: crates.io
