@@ -11,12 +11,14 @@ description: >
 
 # Skill: espforge-devices
 
-Adds support for a new hardware device to the espforge ESP32 framework by:
+Adds support for a new hardware device to the espforge ESP32 framework.
+
+**For every request, the skill MUST:**
+
 1. Finding a suitable `embedded-hal v1` driver crate from crates.io.
 2. Analysing the crate's API to understand its constructor and key methods.
 3. Generating a complete `git diff` patch that wires the device into all required espforge layers.
-4. Modify patch to replace todo section with providing method calls to crate APIs.
-
+4. Modify the diff to replace todo section with method calls from understanding of crates's API.
 ---
 
 ## Prerequisites
@@ -91,8 +93,8 @@ type (`I2c`, `SpiDevice`, `OutputPin`, etc.).
 ### Step 3 – Identify the device interface
 
 ### 3a. Explore the crate API via docs.rs using agent-browser
-MUST use agent-browser skill, agent-browser CLI is already installed.
-Use the agent-browser skill to navigate to https://docs.rs/{CRATE_NAME}/latest/{rust_identifier}/all.html
+agent-browser is already installed.
+MUST use the agent-browser skill(already installed) to navigate to https://docs.rs/{CRATE_NAME}/latest/{rust_identifier}/all.html
 Actively browse the crate's documentation pages to thoroughly understand the interface:
 Find all exposed structs, enums, and traits.
 Find all public methods inside the primary structs.
@@ -150,8 +152,14 @@ The script writes a patch to:
 ~/.picoclaw/workspace/outputs/{device_name}_espforge.diff
 ```
 
-Once the file is written, you MUST modify the diff file and fill in the api you learnt from step 3 to add
+Once the file is written, you can modify the diff file and fill in the api you learnt from step 3 to add
 api from the crate api to espforge through this diff.
+
+Save this change to
+
+```
+~/.picoclaw/workspace/outputs/{device_name}_espforge_complete.diff
+```
 
 
 ---
@@ -196,6 +204,7 @@ Always ask if the user wants to:
 | Artifact | Path |
 |----------|------|
 | Git diff patch | `~/.picoclaw/workspace/outputs/{device_name}_espforge.patch` |
+| Git diff patch complete | `~/.picoclaw/workspace/outputs/{device_name}_espforge_complete.patch` |
 | espforge repo | `~/.picoclaw/workspace/assets/espforge/` |
 
 ---
