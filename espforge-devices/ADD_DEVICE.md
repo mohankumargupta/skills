@@ -587,6 +587,59 @@ pub fn forever(ctx: &mut Context) {
 
 ---
 
+## Guardrails for `generate_code()` in device builder plugins
+
+When writing `espforge_devices_builder/src/<device>.rs`, avoid interpolating `ctx` fields directly
+inside `quote!` with `#ctx...`. `quote!` interpolation only accepts Rust identifiers/expressions,
+so `#ctx.instance_name` is invalid and can generate broken code.
+
+### ✅ Correct pattern
+
+Always create identifiers before the `quote!` block:
+
+```rust
+use quote::format_ident;
+
+let field_ident = format_ident!("{}", ctx.instance_name);
+
+let init = quote! {
+    {
+        let mut #field_ident = espforge_devices::devices::bmp180::device::BMP180Device::new(
+            #i2c_access,
+            #address,
+            #oversampling,
+            #sea_level_pressure,
+        );
+        #field_ident.init().expect("BMP180 initialization failed");
+        #field_ident
+    }
+};
+```
+
+### ❌ Incorrect pattern
+
+Do **not** do this:
+
+```rust
+let init = quote! {
+    let mut #ctx.instance_name = ...;
+    #ctx.instance_name
+};
+```
+
+### Additional checks
+
+Before finishing a new device plugin, verify:
+
+1. `field` is only a **type**, not `pub <name>: <type>`.
+2. `init` is an **expression** producing the device value.
+3. `codegen(ctx.instance_name, field, init)` is used instead of constructing `GeneratedCode` manually.
+4. Any mutable local used in `quote!` is introduced via `format_ident!`.
+5. `cargo check -p espforge_devices_builder` succeeds.
+
+
+
+
 ## Decision Guide for Common Cases
 
 ### Which bus type?
