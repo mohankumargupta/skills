@@ -9,10 +9,16 @@ description: "Use this skill when asked add a hardware device or sensor to espfo
 ---
 
 #SKILL: Adding a Device to Espforge
-To complete this skill, run two sub-skills in order: CLONEREPO.md and FIND_CRATES.md
+To complete this skill, run three sub-skills in order: 
+    CLONEREPO.md 
+    FIND_CRATES.md
+    CREATE_API.md
 
 
 ## Output
 
-The only output I expect is ~/.picoclaw/workspace/outputs/<device>_crate.md , no other files.
+I expect two files: 
+ ~/.picoclaw/workspace/outputs/<device>_crate.md
+ ~/.picoclaw/workspace/outputs/<device>_api.md
+ 
 

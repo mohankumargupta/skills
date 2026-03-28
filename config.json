@@ -1,0 +1,16 @@
+    {
+    "mcp": {
+      "enabled": true,
+      "servers": {
+      	"docsrs": {
+      		"enabled": true,
+      		"command": "docsrs-mcp"
+      	},
+        "filesystem": {
+          "enabled": false,
+          "command": "npx",
+          "args": ["-y", "@modelcontextprotocol/server-filesystem", "/home/pi/.picoclaw/outputs"]
+        }
+       }
+    }
+}
