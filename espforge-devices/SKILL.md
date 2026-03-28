@@ -9,7 +9,7 @@ description: "Use this skill when asked add a hardware device or sensor to espfo
 ---
 
 # SKILL: Adding a Device to Espforge
-To complete this skill, run three sub-skills in order: 
+To complete this skill, run four sub-skills in order: 
     CLONEREPO.md 
     FIND_CRATES.md
     CREATE_API.md
