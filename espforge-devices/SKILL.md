@@ -14,6 +14,7 @@ To complete this skill, run four sub-skills in order:
     FIND_CRATES.md
     CREATE_API.md
     ADD_DEVICE.md
+    COMPILE_ESPFORGE.md
 
 ## Output
 
@@ -21,7 +22,8 @@ I expect two files:
  ~/.picoclaw/workspace/outputs/<device>_crate.md
  ~/.picoclaw/workspace/outputs/<device>_api.md
 
-In addition when running subskill in ADD_DEVICE.md, you will find espforge repo in ~/.picoclaw/workspace/outputs/espforge, this is where you will add the new device requested.
-
+In addition when running subskill in ADD_DEVICE.md, 
+you will find espforge repo in ~/.picoclaw/workspace/outputs/espforge, 
+this is where you will add the new device requested.
 
 
