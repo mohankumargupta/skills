@@ -1,0 +1,22 @@
+{
+  "security": {
+    "auth": {
+      "selectedType": "qwen-oauth"
+    }
+  },
+  "model": {
+    "name": "coder-model"
+  },
+  "$version": 3,
+  "permissions": {
+    "allow": [
+      "Bash(cargo check)"
+    ]
+  },
+  "mcpServers": {
+    "docsrs-mcp": {
+      "command": "docsrs-mcp",
+      "args": []
+    }
+  }
+}
