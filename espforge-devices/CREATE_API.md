@@ -13,6 +13,6 @@ Using the docsrs-mcp tool, ask:
 
 save your findings to:
 
- ~/.picoclaw/workspace/outputs/<device>_api.md
+ ```<device>_api.md```
 
 

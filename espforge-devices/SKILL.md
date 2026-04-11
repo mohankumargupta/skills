@@ -13,17 +13,21 @@ To complete this skill, run four sub-skills in order:
     CLONEREPO.md 
     FIND_CRATES.md
     CREATE_API.md
+    REPO_EXAMPLES.md
     ADD_DEVICE.md
     COMPILE_ESPFORGE.md
-
+    GENERATE_DIFF.md
 ## Output
 
-I expect two files: 
- ~/.picoclaw/workspace/outputs/<device>_crate.md
- ~/.picoclaw/workspace/outputs/<device>_api.md
+I expect three files: 
+<device>_crate.md
+<device>_api.md
+<device>_changes.diff
 
-In addition when running subskill in ADD_DEVICE.md, 
-you will find espforge repo in ~/.picoclaw/workspace/outputs/espforge, 
-this is where you will add the new device requested.
+In addition:
 
+1. When running subskill in REPO_EXAMPLES.md, if we find examples in the github repo for crate, then there should
+   be artifacts in artifacts/<device>/examples
+2. When running subskill in ADD_DEVICE.md, 
+     you will find espforge repo in ```./espforge```
 

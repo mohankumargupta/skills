@@ -1,8 +1,7 @@
 ---
 name: clonerepo
-description: after this skill completes espforge repo is in /home/pi/.picoclaw/workspace/outputs/espforge
+description: after this skill completes espforge repo is in espforge directory
 ---
 
 #SKILL: clone espforge repo 
-To complete this skill, run `bash /home/pi/.picoclaw/workspace/skills/espforge-devices/scripts/clonerepo.sh`
-
+To complete this skill, run `~/.qwen/skills/espforge-devices/scripts/clonerepo.sh`

@@ -714,6 +714,7 @@ let init = quote! {
 - [ ] `espforge_devices_builder/src/lib.rs` — `pub mod <name>;` + entry in `init()`
 - [ ] Example YAML under `espforge_examples/examples/`
 - [ ] Example `app.rs` that calls the device methods
+- [ ] Make sure that root workspace Cargo.toml remains untouched
 
 ---
 

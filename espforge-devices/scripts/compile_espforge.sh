@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
 
-cd ~/.picoclaw/workspace/outputs/espforge
+# run this from directory qwen was called from.
+
+cd espforge
 cargo build -p espforge
