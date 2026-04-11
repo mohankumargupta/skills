@@ -1,17 +1,17 @@
 #!/usr/bin/env sh
 # clone_espforge.sh
-# Clones the espforge repo into ~/.picoclaw/workspace/assets/espforge/
+# Clones the espforge repo in current directory
 # If already cloned, pulls latest changes from the default branch.
 
 REPO_URL="https://github.com/mohankumargupta/espforge.git"
-DEST="$HOME/.picoclaw/workspace/assets/espforge"
+DEST="espforge"
 
 if [ -d "$DEST/.git" ]; then
   echo "espforge repo already present at $DEST — pulling latest..."
   git -C "$DEST" pull --ff-only
+  git clean -dfx
 else
   echo "Cloning espforge into $DEST ..."
-  mkdir -p "$(dirname "$DEST")"
   git clone --depth=1 "$REPO_URL" "$DEST"
 fi
 

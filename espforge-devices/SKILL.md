@@ -18,16 +18,25 @@ To complete this skill, run four sub-skills in order:
     COMPILE_ESPFORGE.md
     GENERATE_DIFF.md
     COMPILE_EXAMPLE.md
+
+## Context variables
+Two variables must be established and carried through every sub-skill:
+- `<device>` — hardware device name, set by the user's initial request (e.g. `bmp180`)
+- `<crate>`  — selected Rust crate name, set at the end of FIND_CRATES.md (e.g. `bmp085-180-rs`)
+
 ## Output
 
-I expect three files: 
-<device>_crate.md
-<device>_api.md
-<device>_changes.diff
+An agent MUST produce every item in this table before reporting completion.
 
-In addition:
+| Sub-skill | Produces | Required? |
+|-----------|----------|-----------|
+| FIND_CRATES.md | `<device>_crate.md` | always |
+| CREATE_API.md | `<device>_api.md` | always |
+| REPO_EXAMPLES.md | `artifacts/<device>/examples/` | only if repo has examples |
+| GENERATE_DIFF.md | `<device>_changes.diff` | always |
+ 
+-In addition:
+**Notes:**
+- When running ADD_DEVICE.md, the espforge repo is in `./espforge`
+- When running REPO_EXAMPLES.md, check exit status: 0 = examples fetched, 1 = none found
 
-1. When running subskill in REPO_EXAMPLES.md, if we find examples in the github repo for crate, then there should
-   be artifacts in artifacts/<device>/examples
-2. When running subskill in ADD_DEVICE.md, 
-     you will find espforge repo in ```./espforge```

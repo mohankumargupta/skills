@@ -1,9 +1,15 @@
 
 # SKILL: Compile example
 
+## Prerequisites
+The espforge binary must already be compiled (COMPILE_ESPFORGE.md must have succeeded).
+
+## Steps
+
 compile generated example by running: 
 
-bash ~/.qwen/skills/espforge-devices/scripts/compile_example.sh
+```bash ~/.qwen/skills/espforge-devices/scripts/compile_example.sh <device>_example ```
 
 if there are warnings or errors, fix them,
 then compile again. after 3 attempts, stop and report.
+
