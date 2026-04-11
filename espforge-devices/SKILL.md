@@ -17,6 +17,7 @@ To complete this skill, run four sub-skills in order:
     ADD_DEVICE.md
     COMPILE_ESPFORGE.md
     GENERATE_DIFF.md
+    COMPILE_EXAMPLE.md
 ## Output
 
 I expect three files: 
