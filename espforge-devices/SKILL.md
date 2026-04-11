@@ -30,4 +30,3 @@ In addition:
    be artifacts in artifacts/<device>/examples
 2. When running subskill in ADD_DEVICE.md, 
      you will find espforge repo in ```./espforge```
-
