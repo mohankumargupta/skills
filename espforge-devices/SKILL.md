@@ -10,6 +10,7 @@ description: "Use this skill when asked add a hardware device or sensor to espfo
 
 # SKILL: Adding a Device to Espforge
 To complete this skill, run four sub-skills in order: 
+    SENSOR_CATEGORY.md
     CLONEREPO.md 
     FIND_CRATES.md
     REPO_EXAMPLES.md
@@ -31,6 +32,7 @@ An agent MUST produce every item in this table before reporting completion.
 
 | Sub-skill | Produces | Required? |
 |-----------|----------|-----------|
+| SENSOR_CATEGORY.md | `<device>_category.md` | always |
 | FIND_CRATES.md | `<device>_crate.md` | always |
 | CRATE_API.md | `<device>_api.md` | always |
 | REPO_EXAMPLES.md | `artifacts/<device>/examples/` | only if repo has examples |
