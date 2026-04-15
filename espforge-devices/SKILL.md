@@ -12,12 +12,13 @@ description: "Use this skill when asked add a hardware device or sensor to espfo
 To complete this skill, run four sub-skills in order: 
     CLONEREPO.md 
     FIND_CRATES.md
-    CREATE_API.md
     REPO_EXAMPLES.md
+    CREATE_API.md
     ADD_DEVICE.md
+    GIT_STUFF.md
     COMPILE_ESPFORGE.md
-    GENERATE_DIFF.md
     COMPILE_EXAMPLE.md
+    GENERATE_DIFF.md
 
 ## Context variables
 Two variables must be established and carried through every sub-skill:
