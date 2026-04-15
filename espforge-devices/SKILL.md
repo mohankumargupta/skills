@@ -13,7 +13,7 @@ To complete this skill, run four sub-skills in order:
     CLONEREPO.md 
     FIND_CRATES.md
     REPO_EXAMPLES.md
-    CREATE_API.md
+    CRATE_API.md
     ADD_DEVICE.md
     GIT_STUFF.md
     COMPILE_ESPFORGE.md
@@ -32,7 +32,7 @@ An agent MUST produce every item in this table before reporting completion.
 | Sub-skill | Produces | Required? |
 |-----------|----------|-----------|
 | FIND_CRATES.md | `<device>_crate.md` | always |
-| CREATE_API.md | `<device>_api.md` | always |
+| CRATE_API.md | `<device>_api.md` | always |
 | REPO_EXAMPLES.md | `artifacts/<device>/examples/` | only if repo has examples |
 | GENERATE_DIFF.md | `<device>_changes.diff` | always |
  
