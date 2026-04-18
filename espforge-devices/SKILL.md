@@ -9,13 +9,16 @@ description: "Use this skill when asked add a hardware device or sensor to espfo
 ---
 
 # SKILL: Adding a Device to Espforge
-To complete this skill, run four sub-skills in order: 
+To complete this skill, run the following sub-skills in order: 
     SENSOR_CATEGORY.md
+
     CLONEREPO.md 
+
     FIND_CRATES.md
     REPO_EXAMPLES.md
     CRATE_API.md
     ADD_DEVICE.md
+
     GIT_STUFF.md
     COMPILE_ESPFORGE.md
     COMPILE_EXAMPLE.md
@@ -26,9 +29,25 @@ Two variables must be established and carried through every sub-skill:
 - `<device>` — hardware device name, set by the user's initial request (e.g. `bmp180`)
 - `<crate>`  — selected Rust crate name, set at the end of FIND_CRATES.md (e.g. `bmp085-180-rs`)
 
+## Scripts location
+
+`~/.config/opencode/skills/espforge-devices/scripts`
+
+## Working directory
+
+`~/Developer/espforge-ai`
+
+All relative outputs are respect to this directory.
+
+## espforge repository
+
+After CLONEREPO.md subskill is run, espforge repo will be in `~/Developer/espforge-ai/espforge`
+
+
 ## Output
 
-An agent MUST produce every item in this table before reporting completion.
+An agent MUST produce every item in this table before reporting completion. Locations are relative to working directory
+`~/Developer/espforge-ai`
 
 | Sub-skill | Produces | Required? |
 |-----------|----------|-----------|
@@ -36,10 +55,10 @@ An agent MUST produce every item in this table before reporting completion.
 | FIND_CRATES.md | `<device>_crate.md` | always |
 | CRATE_API.md | `<device>_api.md` | always |
 | REPO_EXAMPLES.md | `artifacts/<device>/examples/` | only if repo has examples |
+| COMPILE_EXAMPLE.md | `test/<example>` | always |
 | GENERATE_DIFF.md | `<device>_changes.diff` | always |
  
 -In addition:
 **Notes:**
-- When running ADD_DEVICE.md, the espforge repo is in `./espforge`
 - When running REPO_EXAMPLES.md, check exit status: 0 = examples fetched, 1 = none found
 

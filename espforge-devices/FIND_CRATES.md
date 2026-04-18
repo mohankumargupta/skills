@@ -10,7 +10,7 @@ To complete this skill, you must:
    This returns a list of crates mentioning device.   
 2. From the candidate list of crates found, priority is given to: 
      - dependency on embedded-hal v1 (10/10), 
-     - both async and sync versions (8/10).
+     - dependency on embedded-hal-async v1 (8/10).
      - recently updated (6/10)
      - downloads (4/10) 
      - all other considerations (0/10)
@@ -23,7 +23,7 @@ To complete this skill, you must:
 
 Print out what you found, with the most suitable the first one with the asterisk.
 
-| Crate          | Version | EHv1? |Sync+Async| Downloads | Updated   | Stable? | Score
+| Crate          | Version | EHv1? |EH Async v1| Downloads | Updated   | Stable? | Score
 |----------------|---------|-------|--------- |-----------|-----------|---------|-------
 | *foo-driver    | 1.2.0   | ✅    |✅        | 45 230    | 3 mo ago  | ★       |
 | bar-sensor     | 0.4.0   | ✅    | ✅       | 12 100    | 14 mo ago | ✗       |

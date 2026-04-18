@@ -15,7 +15,7 @@ RESULT=$(curl -s -o /dev/null -w "%{http_code}" "https://api.github.com/repos/$G
 if [ "$RESULT" == "200" ];
 then
   mkdir -p "artifacts/$REPOSITORY/examples"
-  npx -y tiged --force "${GH_REPO}/examples" "artifacts/$REPOSITORY/examples"
+  npx -y tiged --force "${GH_REPO}/examples" "artifacts/$REPOSITORY/examples" || exit 1
 else
 exit 1
 fi

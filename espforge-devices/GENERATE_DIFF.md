@@ -1,3 +1,3 @@
 # Skill: Generate diff
 
-Run ```bash ~/.qwen/skills/espforge-devices/scripts/generate_diff.sh <device>```
+Run ```bash ~/config/opencode/skills/espforge-devices/scripts/generate_diff.sh <device>```
