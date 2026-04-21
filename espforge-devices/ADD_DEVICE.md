@@ -13,6 +13,7 @@ This skill guides writing a complete espforge device driver from a Rust no_std d
 - `references/decision_guide.md` — which bus type, DeviceRef, delay, init patterns
 - `references/compile_errors.md` — common errors and fixes
 
+Also look at examples from the crate in `artifacts/<crate>/examples`
 
 ## What You Are Building
 
@@ -62,6 +63,14 @@ Rules:
 
 ```rust
 // espforge_devices/src/devices/my_sensor/device.rs
+//+**IMPORTANT — `init()` return type**: If the upstream driver's `.init()` 
+//returns `Result`,+your device's `.init()` should also return
+// `Result<(), &'static str>` (or `Result<(), E>`).
+//The generated builder code will call `.expect("...")` on it. 
+//If your `.init()` returns `()`,+the builder must NOT call `.expect()` 
+//— just call it directly.++**When in doubt, 
+//return `Result` from your device's `init()`** — this is the safer default.`
+
 
 use embedded_hal::i2c::I2c;                 // always embedded_hal, never a concrete type
 
@@ -186,9 +195,13 @@ impl MySensorPlugin {
 
 ### 2b. Register in `espforge_devices_builder/src/lib.rs`
 
+IMPORTANT: Do not add anything else to init(), just pub mod <module>
+
+
 ```rust
 pub mod my_sensor;   // ← add this line
 
+// no need to add here, previous entries sufficient
 pub fn init() {
     let _ = std::hint::black_box(&ft6206::FT6206Plugin);
     let _ = std::hint::black_box(&ili9341::ILI9341Plugin);
@@ -201,7 +214,7 @@ pub fn init() {
 
 ## Step 3 — Write a YAML Example
 
-Create `espforge_examples/examples/04.Communication/my_sensor_example/example.yaml`:
+Create `espforge_examples/examples/<tier1 sensor category>^/my_sensor_example/example.yaml`:
 
 ```yaml
 espforge:
@@ -372,7 +385,7 @@ let init = quote! {
 - [ ] `espforge_devices/src/devices/mod.rs` — `#[cfg(feature = "<name>")] pub mod <name>;`
 - [ ] `espforge_devices/Cargo.toml` — optional dep + `<name> = ["dep:..."]` feature
 - [ ] `espforge_devices_builder/src/<name>.rs` — config struct + `#[derive(DevicePlugin)]` impl
-- [ ] `espforge_devices_builder/src/lib.rs` — `pub mod <name>;` + entry in `init()`
+- [ ] `espforge_devices_builder/src/lib.rs` — `pub mod <name>;` + leave `init()` untouched
 - [ ] Example YAML under `espforge_examples/examples/`
 - [ ] Example `app.rs` that calls the device methods
 - [ ] Make sure that root workspace Cargo.toml remains untouched
@@ -390,3 +403,17 @@ let init = quote! {
 | Feature not propagated — missing trait impl in generated project | `#[plugin(features = "...")]` is missing or wrong | Must exactly match the feature name declared in `espforge_devices/Cargo.toml` |
 | Pin conflicts during `espforge compile` | Two entries in `esp32:` share the same physical pin number | Fix the YAML — each physical pin can only be assigned once |
 
+## Field Type Reference
+
+The `field` token in `generate_code()` declares the type of the device struct
+ field.
+ It must match the **actual** type that the component layer passes at runtime.
+
+ | Bus | Component used | Field type parameter |
+|---|---|---|+| I2C | `I2cDevice` | `espforge_components::I2C` |
+| SPI | `SpiDevice` | `espforge_platform::bus::SpiDevice<'static>` |
+
+## Delay
+
+no need to pass delay as argument to a new function, creating multiple Delay::new where
+needed at site is just fine

@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 # check_crate.sh
 # Usage: bash scripts/check_crate.sh <crate_name>
 # Checks whether a crate supports embedded-hal v1 and embedded-hal-async.

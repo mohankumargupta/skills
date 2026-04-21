@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 # clone_espforge.sh
 # Clones the espforge repo in current directory
 # If already cloned, pulls latest changes from the default branch.

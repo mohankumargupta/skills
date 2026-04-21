@@ -6,7 +6,7 @@ description: Use this skill to find the most suitable crate from crates.io
 #SKILL: Find most suitable crate for espforge device on crates.io
 To complete this skill, you must:
 
-1. Run `bash ~/.qwen/skills/espforge-devices/scripts/findcrates.sh` with the name of device as argument
+1. Run `bash ~/.config/opencode/skills/espforge-devices/scripts/findcrates.sh` with the name of device as argument
    This returns a list of crates mentioning device.   
 2. From the candidate list of crates found, priority is given to: 
      - dependency on embedded-hal v1 (10/10), 
@@ -23,7 +23,7 @@ To complete this skill, you must:
 
 Print out what you found, with the most suitable the first one with the asterisk.
 
-| Crate          | Version | EHv1? |EH Async v1| Downloads | Updated   | Stable? | Score
+| Crate          | Version | EHv1? |Sync+Async| Downloads | Updated   | Stable? | Score
 |----------------|---------|-------|--------- |-----------|-----------|---------|-------
 | *foo-driver    | 1.2.0   | ✅    |✅        | 45 230    | 3 mo ago  | ★       |
 | bar-sensor     | 0.4.0   | ✅    | ✅       | 12 100    | 14 mo ago | ✗       |

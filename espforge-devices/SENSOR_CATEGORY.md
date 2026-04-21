@@ -27,7 +27,7 @@ This category is used when creating examples which gets put into a folder with t
 
 18.Speciality(Other)
 
-Create a document called <device>_category.md with the following:
+Create a document called <device>_category.md with the file_write tool with the following:
 
 Response Template:
 
