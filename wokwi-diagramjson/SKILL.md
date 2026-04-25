@@ -1,9 +1,10 @@
 ---
 name: wokwi-diagramjson
-description: User describes desired circuit in natural language, like
-- "Create wokwi diagram with a blue LED"
-- "ESP32-C3 with DHT22 sensor and OLED display"
-- "Add servo motor, ultrasonic sensor, and LCD1602"
+description:  User describes desired wokwi diagram circuit in natural language.
+              Trigger phrases
+              'Create wokwi diagram with a blue LED'
+  			  'Create wokwi diagram ESP32-C3 with DHT22 sensor and OLED display'
+  			  'Create wokwi diagram Add servo motor, ultrasonic sensor, and LCD1602'
 ---
 # Skill: Wokwi ESP32-C3 Professional Diagram Generator v4.0
 

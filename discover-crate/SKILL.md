@@ -1,8 +1,8 @@
 ---
-name: espforge-devices
-description: "Use this skill when asked to discover a rust crate. 
-              Trigger phrases: 
-              'find rust crate for device X', 
+name: discover-crate
+description: Use this skill when asked to discover a rust crate. 
+              Trigger phrases 
+              'find rust crate for device X'
               
 ---
 
