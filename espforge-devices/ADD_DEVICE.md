@@ -3,7 +3,7 @@ name: espforge-add-device
 description: Write a new device driver for the espforge ESP32 framework. Use this skill when a user asks to add a new sensor, display, or peripheral driver to espforge, given a Rust driver crate. Covers both the runtime device implementation (espforge_devices) and the host-side code-generation plugin (espforge_devices_builder).
 ---
 
-This skill guides writing a complete espforge device driver from a Rust no_std driver crate. The output is two files: a runtime struct in `espforge_devices` and a builder plugin in `espforge_devices_builder`, plus an example. Read this entire document before writing any code — the Plugin API Reference and the annotated real implementations are the most important sections.
+This skill guides writing a complete espforge device driver from a Rust no_std driver crate. 
 
 **Before writing any code, read these reference documents in full:**
 - `references/plugin_api.md` — exact types, signatures, and helpers used in `generate_code()`
@@ -12,6 +12,7 @@ This skill guides writing a complete espforge device driver from a Rust no_std d
 - `references/example_ili9341.md` — canonical SPI + GPIO device template
 - `references/decision_guide.md` — which bus type, DeviceRef, delay, init patterns
 - `references/compile_errors.md` — common errors and fixes
+- `references/delay_patterns.md` —  handle delay object
 
 Also look at examples from the crate in `artifacts/<crate>/examples`
 
@@ -40,7 +41,6 @@ Before writing a single line, answer these questions by reading the driver crate
 
 ---
 
-
 ## Step 1 — Runtime Device (`espforge_devices`)
 
 ### 1a. Create the module files
@@ -60,6 +60,25 @@ Rules:
 - If heap is needed: `extern crate alloc;` and use `alloc::string::String`, `alloc::vec::Vec`.
 - Keep the public API minimal: `new()`, and one method per reading.
 - If `.init()` is required, make it a separate public method — the builder calls it in the init block.
+
+
+### Trait bound propagation (CRITICAL)
+
+If the upstream driver requires trait bounds on its generic parameter, you **must**
+propagate those bounds to your device struct:
+
+```rust
+pub struct BMP180Device<I: I2c> {
+    sensor: upstream::BMP180<I>,
+}
+
+impl<I: I2c> BMP180Device<I> {
+    pub fn new(i2c: I) -> Self { ... }
+}
+```
+
+Failure to add the bound produces `error[E0277]: the trait bound I: I2c is not satisfied`.
+
 
 ```rust
 // espforge_devices/src/devices/my_sensor/device.rs

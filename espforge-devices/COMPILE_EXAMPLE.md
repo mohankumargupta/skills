@@ -13,3 +13,4 @@ compile generated example by running:
 if there are warnings or errors, fix them,
 then compile again. after 3 attempts, stop and report.
 
+If you need to edit an example or driver code, you have to compile espforge again.

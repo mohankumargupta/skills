@@ -10,15 +10,7 @@ description: "Use this skill when asked add a hardware device or sensor to espfo
 
 # SKILL: Adding a Device to Espforge
 To complete this skill, run the following sub-skills in order: 
-    SENSOR_CATEGORY.md
-
-    CLONEREPO.md 
-
-    FIND_CRATES.md
-    REPO_EXAMPLES.md
-    CRATE_API.md
     ADD_DEVICE.md
-
     GIT_STUFF.md
     COMPILE_ESPFORGE.md
     COMPILE_EXAMPLE.md
@@ -51,14 +43,9 @@ An agent MUST produce every item in this table before reporting completion. Loca
 
 | Sub-skill | Produces | Required? |
 |-----------|----------|-----------|
-| SENSOR_CATEGORY.md | `<device>_category.md` | always |
-| FIND_CRATES.md | `<device>_crate.md` | always |
-| CRATE_API.md | `<device>_api.md` | always |
-| REPO_EXAMPLES.md | `artifacts/<device>/examples/` | only if repo has examples |
 | COMPILE_EXAMPLE.md | `test/<example>` | always |
 | GENERATE_DIFF.md | `<device>_changes.diff` | always |
- 
--In addition:
-**Notes:**
-- When running REPO_EXAMPLES.md, check exit status: 0 = examples fetched, 1 = none found
 
+When everything is completed, produce ~/Developer/espforge-ai/IMPROVEMENTS.md 
+that lists improvements you would make to espforge-devices skill so that makes it easier next time it is run.
+ 
