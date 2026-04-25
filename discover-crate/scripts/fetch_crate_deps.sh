@@ -11,7 +11,7 @@ if [ -n "$2" ]; then
   VERSION="$2"
 else
   VERSION=$(curl -sf \
-    -H "User-Agent: espforge-devices-skill/1.0" \
+    -H "User-Agent: discover-crate-skill/1.0" \
     "https://crates.io/api/v1/crates/${CRATE}" | \
     jq -r '.crate.max_stable_version // .crate.newest_version // empty')
 fi
@@ -20,7 +20,7 @@ echo "Dependencies for ${CRATE} @ ${VERSION}:"
 echo "---"
 
 curl -sf \
-  -H "User-Agent: espforge-devices-skill/1.0" \
+  -H "User-Agent: discover-crate-skill/1.0" \
   "https://crates.io/api/v1/crates/${CRATE}/${VERSION}/dependencies" | \
   jq -r '
     .dependencies[] |

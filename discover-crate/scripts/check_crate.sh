@@ -7,7 +7,7 @@ set -e
 CRATE="${1:?Usage: $0 <crate_name>}"
 
 VERSION=$(curl -s \
-  -H "User-Agent: espforge-devices-skill/1.0" \
+  -H "User-Agent: discover-crate-skill/1.0" \
   "https://crates.io/api/v1/crates/${CRATE}" | \
   jq -r '.crate.max_stable_version // .crate.newest_version // empty')
 
@@ -17,7 +17,7 @@ if [ -z "$VERSION" ]; then
 fi
 
 DEPS=$(curl -s \
-  -H "User-Agent: espforge-devices-skill/1.0" \
+  -H "User-Agent: discover-crate-skill/1.0" \
   "https://crates.io/api/v1/crates/${CRATE}/${VERSION}/dependencies")
 
 HAS_EH1=$(echo "$DEPS" | jq '

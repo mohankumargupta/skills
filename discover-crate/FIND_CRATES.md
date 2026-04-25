@@ -6,7 +6,7 @@ description: Use this skill to find the most suitable crate from crates.io
 #SKILL: Find most suitable crate for espforge device on crates.io
 To complete this skill, you must:
 
-1. Run `bash ~/.config/opencode/skills/espforge-devices/scripts/findcrates.sh` with the name of device as argument
+1. Run `bash ~/.config/opencode/skills/discover-crate/scripts/findcrates.sh` with the name of device as argument
    This returns a list of crates mentioning device.   
 2. From the candidate list of crates found, priority is given to: 
      - dependency on embedded-hal v1 (10/10), 

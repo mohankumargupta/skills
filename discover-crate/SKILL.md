@@ -21,7 +21,7 @@ Two variables must be established and carried through every sub-skill:
 
 ## Scripts location
 
-`~/.config/opencode/skills/espforge-devices/scripts`
+`~/.config/opencode/skills/discover-crate/scripts`
 
 ## Working directory
 
@@ -47,7 +47,7 @@ An agent MUST produce every item in this table before reporting completion. Loca
 | REPO_EXAMPLES.md | `artifacts/<crate>/examples/` | only if repo has examples |
 
 When everything is completed, produce ~/Developer/espforge-ai/IMPROVEMENTS.md 
-that lists improvements you would make to espforge-devices skill so that makes it easier next time it is run.
+that lists improvements you would make to discover-crate skill so that makes it easier next time it is run.
  
 -In addition:
 **Notes:**

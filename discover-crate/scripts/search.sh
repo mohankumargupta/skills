@@ -6,7 +6,7 @@
 SENSOR="${1:?Usage: $0 <sensor_name>}"
 
 curl -s \
-  -H "User-Agent: espforge-devices-skill/1.0" \
+  -H "User-Agent: discover-crate-skill/1.0" \
   "https://crates.io/api/v1/crates?q=${SENSOR}&per_page=100" \
   | jq -r '.crates[].name'
 

@@ -2,7 +2,7 @@
 set -e
 
 SENSOR="${1:?Usage: $0 <sensor_name>}"
-USER_AGENT="espforge-devices-skill/1.0"
+USER_AGENT="discover-crate-skill/1.0"
 
 # Print standard CSV header
 echo "crate,version,downloads,last_upload_date,hal_dependencies"

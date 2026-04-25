@@ -44,7 +44,7 @@ echo ""
 # docs.rs renders method signatures inside <h4 class="code-header"> elements.
 # We strip HTML tags and normalise whitespace to produce readable plain-text signatures.
 RAW=$(curl -sf \
-  -H "User-Agent: espforge-devices-skill/1.0" \
+  -H "User-Agent: discover-crate-skill/1.0" \
   -H "Accept: text/html" \
   "${URL}" 2>/dev/null) || {
   echo "(Could not fetch ${URL})"
