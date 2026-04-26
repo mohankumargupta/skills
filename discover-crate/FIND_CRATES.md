@@ -17,9 +17,9 @@ To complete this skill, you must:
    You must score each crate based on this priority. Score is just weighted sum of priority.
    The one with highest score is the selected crate.
 3. When you find the selected crate, you must create a document 
-    ```<device_name>_crate.md```
+    ```<device>_crate.md```
 
-## Format of <device_name>_crate.md
+## Format of <device>_crate.md
 
 Print out what you found, with the most suitable the first one with the asterisk.
 
