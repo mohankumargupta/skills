@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #set -x 
-# Usage: ./check_examples.sh owner/repo device
+# Usage: ./check_crate_source.sh owner/repo device
 GH_REPO="$1"
 #OWNER="${GH_REPO%%/*}"
 REPOSITORY="${GH_REPO#*/}"
