@@ -12,7 +12,6 @@ To complete this skill, run the following sub-skills in order:
     CLONEREPO.md 
     FIND_CRATES.md
     REPO_EXAMPLES.md
-    CRATE_API.md
    
 ## Context variables
 Two variables must be established and carried through every sub-skill:
