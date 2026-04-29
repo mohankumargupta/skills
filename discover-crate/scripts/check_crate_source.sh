@@ -18,7 +18,7 @@ mkdir -p "artifacts"
 cd artifacts
 git clone --no-checkout --filter=blob:none "$REPOSITORY" "$CRATE"
 cd "$CRATE"
-git sparse-checkout set --no-cone  "Cargo.toml" "src/" "examples/"
+git sparse-checkout set --no-cone "README.md" "Cargo.toml" "src/" "examples/"
 git checkout
 
 

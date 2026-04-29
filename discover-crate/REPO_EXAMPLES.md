@@ -25,7 +25,7 @@
          └── ...
      ```
 
-     Must always read ALL README.md files in full, including in examples folders.
+     Must always read the crate project README.md in full.
 
      Confirm the three key paths exist before proceeding:
      - `artifacts/<repository>/Cargo.toml`
