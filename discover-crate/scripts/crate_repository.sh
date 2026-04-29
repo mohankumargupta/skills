@@ -4,4 +4,4 @@
 
 crate="$1"
 
-cargo info -q "$crate"|grep repo|awk '{print $2}'| cut -d'/' -f4-5
+cargo info -q "$crate"|grep repo|sed 's/^repository: //'

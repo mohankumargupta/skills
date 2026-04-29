@@ -42,10 +42,9 @@ An agent MUST produce every item in this table before reporting completion. Loca
 |-----------|----------|-----------|
 | SENSOR_CATEGORY.md | `<device>_category.md` | always |
 | FIND_CRATES.md | `<device>_crate.md` | always |
-| CRATE_API.md | `<device>_api.md` | always |
-| REPO_EXAMPLES.md | `artifacts/<crate>/examples/` | only if repo has examples |
+| REPO_EXAMPLES.md | `artifacts/<crate>` | if crate has a repo |
 
-When everything is completed, produce ~/Developer/espforge-ai/<device>_CRATE_IMPROVEMENTS.md 
+When everything is completed, produce ~/Developer/espforge-ai/<device>_DISCOVER_CRATE_IMPROVEMENTS.md 
 that lists improvements you would make to discover-crate skill so that makes it easier next time it is run.
  
 -In addition:

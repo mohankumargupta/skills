@@ -1,5 +1,14 @@
-# SKILL: Create API Documentation
 ---
+name: create-crate-api
+description: Use this skill when asked to create api docs for a rust crate. 
+              Trigger phrases 
+              'create api docs for device X'
+              
+
+---
+
+# SKILL: Create API Documentation
+
 
 ## Context variables
 - `<device>` — given in the user prompt
