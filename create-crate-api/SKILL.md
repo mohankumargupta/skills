@@ -17,15 +17,16 @@ description: Use this skill when asked to create api docs for a rust crate.
 ## Prerequisite
 - The crate source is expected at `artifacts/<crate>/` relative to the working directory
 
-## Step 1 — Read `Cargo.toml`
+## Step 1 — Read `README.md` and  `Cargo.toml`
 
-Open `artifacts/<crate>/Cargo.toml` and record:
+Read `artifacts/<crate>/README.md` to understand what the crate does and how it works.
+
+Read `artifacts/<crate>/Cargo.toml` and record:
 
 - The crate name and version.
 - Any feature flags (look for `[features]`). Note which features are default and which are
   additive (e.g. `async`, `blocking`, `defmt`).
-- Key dependencies — especially `embedded-hal`, `embedded-hal-async`, `embedded-io`.
-  Record the version requirement for each.
+- Key dependencies
 
 ---
 
@@ -89,6 +90,8 @@ Combine everything above into `<device>_api.md` using the structure below.
 
 ## Public types
 
+MUST Separate listing for blocking/sync and async if api supports both.
+
 ### `StructName<...>`
 Brief one-line description inferred from doc comments or usage.
 
@@ -132,3 +135,9 @@ If an function method is identical in blocking and async I still want you to rep
 If no examples directory was present (REPO_EXAMPLES.md exited 1), write
 `"No upstream examples available."` in the Usage examples section and derive
 usage solely from the source code.
+
+## Final thing
+
+When everything is completed, produce ~/Developer/espforge-ai/<device>_CRATE_API_IMPROVEMENTS.md 
+that lists improvements you would make to this skill so that makes it easier next time it is run.
+ 

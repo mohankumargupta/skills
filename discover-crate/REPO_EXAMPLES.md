@@ -25,12 +25,5 @@
          └── ...
      ```
 
-     Must always read the crate project README.md in full.
-
-     Confirm the three key paths exist before proceeding:
-     - `artifacts/<repository>/Cargo.toml`
-     - `artifacts/<repository>/src/lib.rs`
-     - `artifacts/<repository>/examples/` (directory may be empty — that is fine)
-
    - **Exit 1**: repository could not be fetched. Record this in `<device>_api.md` as
      "No upstream source available." Do not treat this as a failure.
