@@ -17,6 +17,12 @@ description: Use this skill when asked to create api docs for a rust crate.
 ## Prerequisite
 - The crate source is expected at `artifacts/<crate>/` relative to the working directory
 
+## Step 0 - Read `references/async_crates.md`
+
+Some rust crates use crates like maybe_async_cfg to avoid duplication between sync and async code.
+So read `references/async_crates.md` in this skill to know how to handle those when you come
+across it.
+
 ## Step 1 — Read `README.md` and  `Cargo.toml`
 
 Read `artifacts/<crate>/README.md` to understand what the crate does and how it works.
