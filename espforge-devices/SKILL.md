@@ -1,7 +1,6 @@
 ---
 name: espforge-devices
-description: Use this skill when asked add a hardware device or sensor to espforge. 
-              Trigger phrases 'add device X to espforge'
+description: DO NOT USE THIS SKILL
 ---
 
 # SKILL: Adding a Device to Espforge
