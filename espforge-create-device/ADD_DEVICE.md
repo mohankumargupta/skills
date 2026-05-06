@@ -278,6 +278,17 @@ pub fn forever(ctx: &mut Context) {
 }
 ```
 
+## Step 4: Compile espforge
+
+To make sure everything work, we need to compile with the following:
+
+```
+cargo build -p espforge
+```
+
+Never run cargo check.
+
+
 ---
 
 ## Guardrails for `generate_code()` in device builder plugins
@@ -328,8 +339,6 @@ Before finishing a new device plugin, verify:
 2. `init` is an **expression** producing the device value.
 3. `codegen(ctx.instance_name, field, init)` is used instead of constructing `GeneratedCode` manually.
 4. Any mutable local used in `quote!` is introduced via `format_ident!`.
-5. `cargo build -p espforge` succeeds.
-
 
 
 
