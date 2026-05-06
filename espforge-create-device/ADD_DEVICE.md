@@ -328,7 +328,7 @@ Before finishing a new device plugin, verify:
 2. `init` is an **expression** producing the device value.
 3. `codegen(ctx.instance_name, field, init)` is used instead of constructing `GeneratedCode` manually.
 4. Any mutable local used in `quote!` is introduced via `format_ident!`.
-5. `cargo check -p espforge_devices_builder` succeeds.
+5. `cargo build -p espforge` succeeds.
 
 
 
