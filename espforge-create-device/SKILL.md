@@ -35,6 +35,12 @@ This crate needs to be incorporated into espforge when adding support for `<devi
 
 `espforge` directory: Contains source code of espforge repository. 
 
+## Compiling espforge
+
+```rust
+cargo build -p espforge
+```
+
 When everything is completed, produce ~/Developer/espforge-ai/<device>_driver_IMPROVEMENTS.md 
 that lists improvements you would make to espforge-create-device skill so that makes it easier next time it is run.
  
