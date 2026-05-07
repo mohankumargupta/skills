@@ -96,5 +96,5 @@ let init = quote! { let mut #field_ident = ...; };
 2. `init` is an expression (or block) that produces the device value
 3. `codegen(ctx.instance_name, field, init)` is used — not manual `GeneratedCode { … }`
 4. Every mutable local in `quote!` comes from `format_ident!`
-5. `cargo check -p espforge_devices_builder` passes clean
+5. `cargo build -p espforge` passes clean
 

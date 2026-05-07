@@ -16,6 +16,11 @@ This skill guides writing a complete espforge device driver from a Rust no_std d
 
 Also look at examples from the crate in `artifacts/<crate>/examples`
 
+## Example
+
+When you create example, to determine the name of the folder to put in `espforge/espforge_examples`, 
+you must read `<device>_category.md` in the working directory, the tier 1 category is the folder name you must use.
+
 ## What You Are Building
 
 An espforge device driver has two distinct halves that live in separate crates:
