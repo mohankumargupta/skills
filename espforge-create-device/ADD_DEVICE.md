@@ -225,12 +225,11 @@ IMPORTANT: Do not add anything else to init(), just pub mod <module>
 ```rust
 pub mod my_sensor;   // ← add this line
 
-// no need to add here, previous entries sufficient
+// MUST leave this as-is, MUST NOT add to entries already here 
 pub fn init() {
     let _ = std::hint::black_box(&ft6206::FT6206Plugin);
     let _ = std::hint::black_box(&ili9341::ILI9341Plugin);
     let _ = std::hint::black_box(&ssd1306::SSD1306Plugin);
-    let _ = std::hint::black_box(&my_sensor::MySensorPlugin);  // ← add this line
 }
 ```
 
