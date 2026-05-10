@@ -57,6 +57,17 @@ espforge_devices/src/devices/
     device.rs    ← the actual struct
 ```
 
+### Rule: Hardware Configuration Bridging
+When integrating an upstream driver, you must ensure that user-configurable hardware settings are properly bridged from the builder to the device wrapper. Do not blindly use Config::default() if the upstream driver supports custom settings.
+
+Follow these steps for every new device:
+
+Identify Key Hardware Parameters: Inspect the upstream driver's constructor or Config struct. Identify common configurable parameters (e.g., address, baud_rate, oversampling, mode, timeout).
+Use Primitive Types in the Wrapper Signature: The wrapper's new() method MUST accept these user-configurable parameters as standard Rust types (e.g., u8, u32, bool, f32). Do not expose the upstream crate's proprietary structs or enums in the wrapper's public API.
+Translate Internally: Inside the wrapper's new() method, instantiate the upstream crate's Config object. Map the primitive inputs to the upstream enums/structs. Use safe default values for any fields the framework doesn't need to expose.
+Builder Propagation: Ensure the builder plugin (in espforge_devices_builder) actively extracts these fields from the user configuration and passes them into the generated new() call. Verify that no variables are left unused.
+
+
 ### 1b. Write `device.rs`
 
 Rules:
