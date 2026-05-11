@@ -1,12 +1,19 @@
 #!/usr/bin/env bash
 
-# Usage: $0 ssd1306_example
+set -x
 
-example="$1"
-mkdir -p test
-cd test
-yaml_file="${example}.yaml"
-../espforge/target/debug/espforge example "$example"
-cd "$example"
-ESPFORGE_LOCAL_PATH=../../espforge ../../espforge/target/debug/espforge compile "$yaml_file"
+# Usage: $0 ssd1306
+
+
+DEVICE="$1"
+EXAMPLE="${DEVICE}_example"
+EXAMPLE_YAML="${EXAMPLE}.yaml"
+CURRENT_DIR=$(pwd)
+ESPFORGE_PATH="$CURRENT_DIR/espforge"
+ESPFORGE="${ESPFORGE_PATH}/target/debug/espforge"
+mkdir -p examples
+cd examples
+$ESPFORGE example "$EXAMPLE"
+cd "$EXAMPLE"
+ESPFORGE_LOCAL_PATH="$ESPFORGE_PATH" $ESPFORGE compile "$EXAMPLE_YAML"
 cargo build

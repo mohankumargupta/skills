@@ -428,7 +428,9 @@ let init = quote! {
 - [ ] `espforge_devices/src/devices/mod.rs` — `#[cfg(feature = "<name>")] pub mod <name>;`
 - [ ] `espforge_devices/Cargo.toml` — optional dep + `<name> = ["dep:..."]` feature
 - [ ] `espforge_devices_builder/src/<name>.rs` — config struct + `#[derive(DevicePlugin)]` impl
-- [ ] `espforge_devices_builder/src/lib.rs` — `pub mod <name>;` + leave `init()` untouched
+- [ ] `espforge_devices_builder/src/lib.rs` — `pub mod <name>;` + 
+    leave `init()` untouched as instructed in 2b. Register in `espforge_devices_builder/src/lib.rs` of this sub-skill.
+   
 - [ ] Example YAML under `espforge_examples/examples/`
 - [ ] Example `app.rs` that calls the device methods
 - [ ] Make sure that root workspace Cargo.toml remains untouched

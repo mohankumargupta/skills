@@ -17,7 +17,7 @@ The first line will tell you the name of the rust crate that will support the de
 To complete this skill, run the following sub-skills in order: 
     ADD_DEVICE.md
     GIT_STUFF.md
-
+    COMPILE_EXAMPLE.md
 ## Scripts location
 
 `~/.config/opencode/skills/espforge-devices/scripts`
