@@ -13,6 +13,7 @@ This skill guides writing a complete espforge device driver from a Rust no_std d
 - `references/decision_guide.md` — which bus type, DeviceRef, delay, init patterns
 - `references/compile_errors.md` — common errors and fixes
 - `references/delay_patterns.md` —  handle delay object
+- `references/async-guide.md` - how to correctly determine correct blocking and async API for rust crate
 
 Also look at examples from the crate in `artifacts/<crate>/examples`
 
