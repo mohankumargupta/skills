@@ -8,14 +8,23 @@ To complete this skill, you must:
 
 1. Run `bash ~/.config/opencode/skills/discover-crate/scripts/findcrates.sh` with the name of device as argument
    This returns a list of crates mentioning device.   
-2. From the candidate list of crates found, priority is given to: 
-     - dependency on embedded-hal v1 (10/10), 
-     - dependency on embedded-hal-async v1 (8/10).
-     - recently updated (6/10)
-     - downloads (4/10) 
-     - all other considerations (0/10)
-   You must score each crate based on this priority. Score is just weighted sum of priority.
-   The one with highest score is the selected crate.
+2. Score each candidate crate on these criteria (weighted sum):
+
+   | Criterion                          | Points |
+   |------------------------------------|--------|
+   | depends on embedded-hal ^1.x       | 10     |
+   | depends on embedded-hal-async ^1.x |  8     |
+   | updated_at < 6 months ago          |  6     |
+   | updated_at 6–12 months ago         |  4     |
+   | updated_at 12–24 months ago        |  2     |
+   | updated_at > 24 months ago         |  0     |
+   | downloads every 1000 downloads     |  1     |
+
+   Today's date must be recorded at the top of the scoring table so the
+   result is reproducible. Run `bash -c 'date -u +"%Y-%m-%d"'` and record the output as `<today>`
+
+   Select the crate with the highest total score.
+   
 3. When you find the selected crate, you must create a document 
     ```<device>_crate.md```
 
