@@ -18,13 +18,11 @@ You must output a `<scratchpad>` block in your thought process where you calcula
    - If NO: The crate is completely DISQUALIFIED. Stop calculating, mark its score as "DQ", and move to the next crate.
  - Depends on `embedded-hal-async` version `^1.x` = +8 points
  FRESHNESS (Compare last updated date to `<today>`):
-   - Updated < 6 months ago = +6 points
-   - Updated 6–12 months ago = +4 points
-   - Updated 12–24 months ago = +2 points
-   - Updated > 24 months ago = 0 points
+   - Updated <= 1 year ago = +2 points
+   - Updated > 1 year ago = 0 points
  ADOPTION:
-   - Divide total downloads by 1000 (round down). E.g., 45,230 downloads = +45 points.
-
+   - Divide total downloads by 1000.0 (include one decimal point ). E.g., 45,230 downloads = +45.2 points.
+     You can use ```bash -c 'python3 -c "print(f\"{45230 / 1000:.1f}\")"'``` to calculate
  TIE-BREAKER: 
    - If two or more crates have the exact same Total Score, the crate with the higher total `Downloads` wins.   
 
@@ -36,11 +34,9 @@ You must output a `<scratchpad>` block in your thought process where you calcula
    |------------------------------------|--------|
    | depends on embedded-hal ^1.x       | 10     |
    | depends on embedded-hal-async ^1.x |  8     |
-   | updated_at < 6 months ago          |  6     |
-   | updated_at 6–12 months ago         |  4     |
-   | updated_at 12–24 months ago        |  2     |
-   | updated_at > 24 months ago         |  0     |
-   | downloads every 1000 downloads     |  1     |
+   | updated_at <= 1 year ago           |  2     |
+   | updated_at > 1 year ago            |  0     |
+   | downloads                          |  <downloads>/1000.0 (one decimal place)     |
 
    Today's date must be recorded at the top of the scoring table so the
    result is reproducible. Run `bash -c 'date -u +"%Y-%m-%d"'` and record the output as `<today>`
