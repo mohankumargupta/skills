@@ -44,6 +44,7 @@ Rules:
 - Wrap the upstream driver struct. Do not expose upstream types directly.
 - Implement a simple API: `new()`, `init()`, and the key user-facing methods.
 - Keep generics minimal – prefer concrete espforge platform types in the builder.
+- Builder plugins must only pass primitive types (like u8 or bool). Any conversion from primitive types to crate-specific enums must happen inside the new() method of the device wrapper.
 
 ### I2C pattern
 

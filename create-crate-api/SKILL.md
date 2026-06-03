@@ -15,7 +15,7 @@ description: Use this skill when asked to create api docs for a rust crate.
 - `<crate>` - see below 
 
 First thing you must do is resolve `<crate>` context variable.
-you will find this at the bottom of file `<device>_api.md` in the working directory
+you will find this at the bottom of file `<device>_crate.md` in the working directory
 If you do not resolve this, stop and exit.
 
 
