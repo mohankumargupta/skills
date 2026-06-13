@@ -4,6 +4,10 @@ description: Trigger when user asks
              create a Wokwi custom chip for device <device> in zig 0.16
 ---
 
+Only do what has been outlined here and no more. If a step is not outlined here, 
+for example release build, do not do it unless strictly mentioned here.
+
+
 # Skill: Create a wokwi custom chip
 
 Steps:
@@ -13,7 +17,7 @@ Steps:
 run in current working directory
 
 ```bash
-git clone --depth 1 https://github.com/tuhde/Periph 
+git clone --depth 1 https://github.com/tuhde/Periph Periph 
 ```
 
 Identify:
@@ -56,7 +60,10 @@ Use the zig skill to write zig 0.16 code
 
 # Output
 
-chip.zig in current working directory
+In current working directory
+
+chip.zig
+<device>.chip.json : wokwi custom chip controls
 
 # Validation
 
