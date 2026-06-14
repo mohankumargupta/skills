@@ -32,6 +32,10 @@ Template preservation rules:
 - Do not uncomment commented sections unless the user explicitly asks.
 - Add the device-specific YAML only after the existing template content.
 
+There is one and only one exception to this rule, and that is to add a on_boot to the core
+esphome configuration. This is where you essentially would run an automation script to 
+test behaviour, if appropriate.
+
 Create a file called `<device>.yaml` in the current working directory. The final file must begin with the exact contents of `references/template.yaml`, 
 followed by the device configuration for a typical use case.
 

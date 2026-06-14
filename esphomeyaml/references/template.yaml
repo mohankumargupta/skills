@@ -14,4 +14,7 @@ esp32:
 #ota:
 #  platform: esphome
 logger:
+  hardware_uart: UART0
+
+
 
