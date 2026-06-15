@@ -19,6 +19,7 @@ Under references folder under this skill.
 
 - `wokwi.md`
 - `diagramjson.md`
+- `esp32c3.md`
 
 You MUST read wokwi.md in full.
 

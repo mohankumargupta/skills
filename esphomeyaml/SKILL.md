@@ -5,12 +5,31 @@ description: trigger when user asks: create esphome yaml for device <device>
 
 # SKILL: ESPHome yaml
 
+## Input
+
+Files are relative to current working directory
+
+```test.rs```: A std rust program run on the host machine during Wokwi simulation time.
+This file reads from the tcp stream created by wokwi.toml rfc2217 tcp serial port.
+You need to add to ```esphome``` section of the esphome yaml file, that prints
+what this rust program expects in order to run test assertions on the serial output.  
+
+
+## Ouput
+
+Files are relative to current working directory
+
+```<device>.yaml```: generated esphome yaml file
+```<device>.chip.json```: wokwi custom chip definition
+
+
 ## Step 1: esphome components docs
 
-If there isn't already a components directory,
+If there isn't already a components directory, run the following bash commands
 
 ```bash
 mkdir -p components
+cd components
 npx degit https://github.com/esphome/esphome.io/src/content/docs/components
 ```
 
