@@ -29,7 +29,10 @@ Under references folder under this skill.
 -  **Part IDs are unique**: Use descriptive IDs like `led1`, `r1`, `btn1`, `us1`, `servo1`, `oled1`. Never duplicate IDs.
 -  **Wire colors**: Use standard colors: `red` for VCC, `black` for GND, `green` for data/signal, `blue` for secondary signals, `orange` for control.
 -  **Coordinates**: Place the ESP32-C3 at `(0, 0)` as the anchor. Place other parts to the right (`left: 150+`) or below (`top: 100+`) with ~50-100px spacing to avoid overlap. Use a grid layout.
--  **Connections format**:  Use empty `[]` for wire routing connections.
+-  **Connections format**:  Use empty `[]` for wire routing connections. the first two entries MUST
+                            be [ "esp:TX", "$serialMonitor:RX", "", [] ], and     [ "esp:RX", "$serialMonitor:TX", "", [] ],
+
+
 
 ## Workflow
 

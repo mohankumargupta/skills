@@ -1,5 +1,5 @@
 ---
-name: Wokwi create custom chip
+name: wokwi-customchip
 description: Trigger when user asks 
              create a Wokwi custom chip for device <device> in zig 0.16
 ---
@@ -14,7 +14,7 @@ Steps:
 
 ## Step 1: Find spec markdown file in Periph directory
 
-run in current working directory
+run in current working directory if Periph does not exist
 
 ```bash
 git clone --depth 1 https://github.com/tuhde/Periph Periph 
@@ -60,7 +60,10 @@ Use the zig skill to write zig 0.16 code
 
 # Output
 
-In current working directory
+In current working directory, create a directory: devices/<device>
+this is the working directory for the output generated and files copied.
+
+inside that directory create the following files:
 
 chip.zig
 <device>.chip.json : wokwi custom chip controls
@@ -68,9 +71,9 @@ chip.zig
 # Validation
 
 To validate copy from ```assets/wokwi-mcp23017/build.zig```
-and  ```assets/wokwi-mcp23017/wokwi-api.zig ``` from  this skill to current working dir.
-
-then run 
+and  ```assets/wokwi-mcp23017/wokwi-api.zig ``` from  this skill to devices/<device>.
+and
+then from that directory run 
 
 ```zig build```. 
 
