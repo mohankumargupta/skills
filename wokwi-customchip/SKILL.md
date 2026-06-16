@@ -7,6 +7,7 @@ description: Trigger when user asks
 Only do what has been outlined here and no more. If a step is not outlined here, 
 for example release build, do not do it unless strictly mentioned here.
 
+before proceeding, run tree . in this skill directory to see file organisation
 
 # Skill: Create a wokwi custom chip
 
@@ -70,7 +71,7 @@ chip.zig
 
 # Validation
 
-To validate copy from ```assets/wokwi-mcp23017/build.zig```
+To validate chip.json copy from ```assets/wokwi-mcp23017/build.zig```
 and  ```assets/wokwi-mcp23017/wokwi-api.zig ``` from  this skill to devices/<device>.
 and
 then from that directory run 
@@ -79,6 +80,8 @@ then from that directory run
 
 If successful, it should produce a dist/chip.wasm
 
+now validate <device>.chip.json by running jsonschema-cli validate -i <device>.chip.json <schema>
+ with schema under assets folder of this skill
 
 # Before finishing
 
