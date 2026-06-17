@@ -1,13 +1,20 @@
 ---
 name: wokwi-customchip
-description: Trigger when user asks 
-             create a Wokwi custom chip for device <device> in zig 0.16
+description: Create a Wokwi custom chip for device <device> in zig 0.16
 ---
 
-Only do what has been outlined here and no more. If a step is not outlined here, 
-for example release build, do not do it unless strictly mentioned here.
+Do not add release builds, publishing steps, examples, README files, tests, CI, packaging, 
+or extra generated files unless explicitly requested 
+by the user or required for the validation steps above.
 
-before proceeding, run tree . in this skill directory to see file organisation
+
+before proceeding, run 
+
+```bash
+tree .
+``` 
+
+in this skill directory to see file organisation
 
 # Skill: Create a wokwi custom chip
 
@@ -20,6 +27,14 @@ run in current working directory if Periph does not exist
 ```bash
 git clone --depth 1 https://github.com/tuhde/Periph Periph 
 ```
+
+Then run:
+
+```bash
+fd -t f . Periph/specs |grep <device>
+```
+
+This will identify the correct spec file
 
 Identify:
 
@@ -57,7 +72,8 @@ Reuse patterns wherever possible.
 
 ## Step 4: Generate Zig 0.16 Custom chip code
 
-Use the zig skill to write zig 0.16 code
+MUST use the zig skill (called zig) to write zig 0.16 code. If you can't, tell the user
+and exit with failure.
 
 # Output
 
@@ -73,15 +89,18 @@ chip.zig
 
 To validate chip.json copy from ```assets/wokwi-mcp23017/build.zig```
 and  ```assets/wokwi-mcp23017/wokwi-api.zig ``` from  this skill to devices/<device>.
-and
-then from that directory run 
+and then from that directory run 
 
 ```zig build```. 
 
 If successful, it should produce a dist/chip.wasm
 
-now validate <device>.chip.json by running jsonschema-cli validate -i <device>.chip.json <schema>
- with schema under assets folder of this skill
+now validate ```<device>.chip.json``` by running 
+
+```jsonschema-cli validate <schema> -i <device>.chip.json```
+
+Use the absolute path to `assets/chip.schema.json` 
+from this skill directory when running validation.
 
 # Before finishing
 
