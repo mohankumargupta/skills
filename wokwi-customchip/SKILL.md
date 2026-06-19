@@ -3,11 +3,6 @@ name: wokwi-customchip
 description: Create a Wokwi custom chip for device <device> in zig 0.16
 ---
 
-Do not add release builds, publishing steps, examples, README files, tests, CI, packaging, 
-or extra generated files unless explicitly requested 
-by the user or required for the validation steps above.
-
-
 before proceeding, run 
 
 ```bash
@@ -17,56 +12,6 @@ tree .
 in this skill directory to see file organisation
 
 # Skill: Create a wokwi custom chip
-
-Steps:
-
-## Step 0: Create a spec markdown file
-
-Run all scripts from current working directory.
-
-Run this script if components directory does not exist:
-
-```bash
-mkdir -p components
-npx -y degit -f https://github.com/esphome/esphome.io/src/content/docs/components
-```
-
-Then run:
-```bash
-fd -a -t f -e mdx . components | grep <device>
-```
-
-This will give you the full path to esphome docs for <device>.
-
-Read this file and find the first datasheet url, then download it using wget or curl 
-as `<device>.pdf`
- to 
-`datasheets/<device>` directory in the current working directory. 
-
-Then run this script, replacing <device>
-
-```bash
-cd datasheets/<device>
-uv init
-uv add pymupdf4llm
-```
-
-copy `assets/datasheet_device/main.py` from this skill and copy it to `datasheets/<device>`
-
-the run
-
-```bash
-cd datasheets/<device>
-uv run main.py <device>.pdf <device>_datasheet.md
-```
-Then I need to print out the following to the user:
-
-Skill completed. Please open freebuff and write the following prompt:
-
-Take datasheets/<device>/<device>_datasheet.md as the source of truth and 
-path/to/Periph/spec/<device>.md as template and produce datasheets/<device>.md
-which fills out template from source of truth.
-
 
 ## Step 1: Find spec markdown file in Periph directory
 
