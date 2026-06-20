@@ -1,6 +1,6 @@
 ---
 name: spec-from-datasheet
-description: Create spec markdown from dataheet for <device>
+description: Create spec markdown from datasheet for <device>
 ---
 
 before proceeding, run 
@@ -47,6 +47,7 @@ uv init
 uv add pymupdf4llm
 ```
 
+
 copy `assets/datasheet_device/main.py` and `assets/datasheet_device/template_chip.md` from this skill 
 and copy it to `datasheets/<device>` in the current directory.
 
@@ -65,7 +66,7 @@ Then I need to print out the following to the user:
 Skill completed. Please open freebuff and write the following prompt:
 
 Take datasheets/<device>/<device>_datasheet.md as the source of truth and 
-path/to/Periph/spec/<device>.md as template and produce datasheets/<device>.md
+datasheets/<device>/template_chip.md as template and produce datasheets/<device>.md
 which fills out template from source of truth.
 ```
 
