@@ -58,18 +58,15 @@ cd datasheets/<device>
 uv run main.py <device>.pdf <device>_datasheet.md
 ```
 
-## Step 5: Final user output
+## Step 5: Produce finished markdown
 
-Then I need to print out the following to the user:
+Take `datasheets/<device>/<device>_datasheet.md` as the source of truth and 
+`datasheets/<device>/template_chip.md` as template and produce `datasheets/<device>.md`
+which fills out template from source of truth only.
 
-```text
-Skill completed. Please open freebuff and write the following prompt:
 
-Take datasheets/<device>/<device>_datasheet.md as the source of truth and 
-datasheets/<device>/template_chip.md as template and produce datasheets/<device>.md
-which fills out template from source of truth.
-```
+## Step 6 Finishing up
 
-Before finishing, write a doc called <device>_spec.md for comments about this skill
+Before finishing, write a doc called <device>_spec.md in original working directory for comments about this skill
 including obstacles and improvements.
 
