@@ -3,41 +3,31 @@ name: spec-from-datasheet
 description: Create spec markdown from datasheet for <device>
 ---
 
-before proceeding, run 
-
-```bash
-tree .
-``` 
-
-in this skill directory to see file organisation
-
 ## Step 1 Download esphome.io components
 
-Run this script if components directory does not exist:
+Run this script from current working directory if components directory does not exist:
 
 ```bash
 mkdir -p components
 npx -y degit -f https://github.com/esphome/esphome.io/src/content/docs/components
 ```
 
-Then run:
+## Step 2 Find esphome.io docs markdown 
+
+Then run this from current working directory:
 ```bash
-fd -a -t f -e mdx . components | grep <device>
+rg -i <device>
 ```
 
-This will give you the full path to esphome docs for <device>.
+This will give you a path relative to current directory to esphome docs for <device>.
 
 ## Step 2: Download datasheet
 
 1. Open the component documentation file.
-2. Find the first datasheet URL.
-3. Download the datasheet as:
+2. Find a datasheet URL for <device>.
+3. Create directory `datasheets/<device>`
+4. Download the datasheet as `datasheets/<device>/<device>.pdf`
 
-```text
-datasheets/<device>/<device>.pdf
-```
-
-Create the destination directory if required.
 
 ## Step 3: Prepare extraction environment
 
