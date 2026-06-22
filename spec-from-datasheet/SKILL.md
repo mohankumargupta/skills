@@ -9,6 +9,9 @@ Run ONLY this command, with no flags, no chaining, and no companion commands:
 pwd
 ```
 
+This will be referred to as `<originalpwd>` in the rest of this skill.
+
+
 Do not append  && ,  ; , or  | . Do not run any other shell command in this skill.
 Do not list the home directory. Do not run anything after this.
 
@@ -39,7 +42,8 @@ This will give you a path relative to current directory to esphome docs for <dev
      this will return the actual url which you can download from.
 4. Create directory `datasheets/<device>`
 5. Download the datasheet as `datasheets/<device>/<device>.pdf`
-
+6. Ignore if `file name_of_datasheet` returns encypted, it is usually a false flag.
+   qpdf is installed.
 
 ## Step 3: Prepare extraction environment
 
@@ -69,6 +73,6 @@ which fills out template from source of truth only.
 
 ## Step 6 Finishing up
 
-Before finishing, write a doc called <device>_spec.md in original working directory for comments about this skill
+Before finishing, write a doc called `<device>_spec.md` in directory `<originalpwd>` for comments about this skill
 including obstacles and improvements.
 
