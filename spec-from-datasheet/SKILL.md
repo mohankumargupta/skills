@@ -3,14 +3,15 @@ name: spec-from-datasheet
 description: Create spec markdown from datasheet for <device>
 ---
 
+run pwd this is the current working directory
+
+All scripts are in the `scripts` folder of this skill.
+They are to be run in the current working directory.
+
+
 ## Step 1 Download esphome.io components
 
-Run this script from current working directory if components directory does not exist:
-
-```bash
-mkdir -p components
-npx -y degit -f https://github.com/esphome/esphome.io/src/content/docs/components
-```
+run `component.sh` inside the current working directory
 
 ## Step 2 Find esphome.io docs markdown 
 
@@ -25,6 +26,9 @@ This will give you a path relative to current directory to esphome docs for <dev
 
 1. Open the component documentation file.
 2. Find a datasheet URL for <device>.
+   - once you found a url there is a script inside this skill called analog.sh
+     datasheets with analog.com in their url are replaced by wayback machine url
+     usage: analog.sh <device>
 3. Create directory `datasheets/<device>`
 4. Download the datasheet as `datasheets/<device>/<device>.pdf`
 
