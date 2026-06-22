@@ -3,7 +3,15 @@ name: spec-from-datasheet
 description: Create spec markdown from datasheet for <device>
 ---
 
-run pwd this is the current working directory
+Run ONLY this command, with no flags, no chaining, and no companion commands:
+ 
+```bash
+pwd
+```
+
+Do not append  && ,  ; , or  | . Do not run any other shell command in this skill.
+Do not list the home directory. Do not run anything after this.
+
 
 All scripts are in the `scripts` folder of this skill.
 They are to be run in the current working directory.
@@ -24,13 +32,13 @@ This will give you a path relative to current directory to esphome docs for <dev
 
 ## Step 2: Download datasheet
 
-1. Open the component documentation file.
+1. Read the device documentation file (eg. `components/sensor/<device>.mdx`)
 2. Find a datasheet URL for <device>.
-   - once you found a url there is a script inside this skill called analog.sh
-     datasheets with analog.com in their url are replaced by wayback machine url
-     usage: analog.sh <device>
-3. Create directory `datasheets/<device>`
-4. Download the datasheet as `datasheets/<device>/<device>.pdf`
+3. once you found a datasheet url there is a script inside this skill called `analog.sh`
+     usage: analog.sh <datasheet_url>
+     this will return the actual url which you can download from.
+4. Create directory `datasheets/<device>`
+5. Download the datasheet as `datasheets/<device>/<device>.pdf`
 
 
 ## Step 3: Prepare extraction environment
