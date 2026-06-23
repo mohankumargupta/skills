@@ -33,14 +33,15 @@ timing model
 Inspect:  ```assets/wokwi-mcp23017/chip.zig``` and 
 ```assets/wokwi-mcp23017/wokwi_api.zig``` in this skill
 
-The wokwi api is also documented in ```references``` folder in this skill
+The wokwi api is also documented in ```references``` folder in this skill.
+Note that the wokwi api is initially written in C, and the references are written
+for the `wokwi-api.h` from which `wokwi_api.zig` is based.
 
 Reuse patterns wherever possible.
 
 ## Step 3: Generate Zig 0.16 Custom chip code
 
-MUST use the zig skill (called zig) to write zig 0.16 code. If you can't, tell the user
-and exit with failure.
+Write zig 0.16 code for the custom chip and save as `artifacts/prompt1/chip.zig`
 
 
 # Validation
