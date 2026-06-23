@@ -46,20 +46,23 @@ Write zig 0.16 code for the custom chip and save as `artifacts/prompt1/chip.zig`
 
 # Validation
 
-To validate chip.json copy from ```assets/wokwi-mcp23017/build.zig```
-and  ```assets/wokwi-mcp23017/wokwi_api.zig ``` from  this skill to devices/<device>.
-and then from that directory run 
+To validate chip.zig and <device>.chip.json copy from this skill the following files:
+ `assets/wokwi-mcp23017/build.zig`
+ `assets/wokwi-mcp23017/wokwi_api.zig` 
+ `assets/chip.schema.json`
 
-```zig build```. 
+Copy to
+ `artifacts/prompt1` in current working directoy. 
+
+Then run from `artifacts/prompt1`:
+`zig build`. 
 
 If successful, it should produce a dist/chip.wasm
 
 now validate ```<device>.chip.json``` by running 
 
-```jsonschema-cli validate <schema> -i <device>.chip.json```
+```jsonschema-cli validate chip.schema.json -i <device>.chip.json```
 
-Use the absolute path to `assets/chip.schema.json` 
-from this skill directory when running validation.
 
 # Before finishing
 
