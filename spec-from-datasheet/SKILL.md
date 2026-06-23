@@ -67,7 +67,7 @@ uv run main.py <device>.pdf <device>_datasheet.md
 ## Step 5: Produce finished markdown
 
 Take `datasheets/<device>/<device>_datasheet.md` as the source of truth and 
-`datasheets/<device>/template_chip.md` as template and produce `datasheets/<device>.md`
+`datasheets/<device>/template_chip.md` as template and produce `artifacts/prompt0/<device>.md`
 which fills out template from source of truth only.
 
 

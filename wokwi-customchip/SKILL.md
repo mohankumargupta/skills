@@ -3,44 +3,21 @@ name: wokwi-customchip
 description: Create a Wokwi custom chip for device <device> in zig 0.16
 ---
 
-before proceeding, run 
+# Input
 
-```bash
-tree .
-``` 
+`artifacts/prompt0/<device>.md`: Spec file for <device>
 
-in this skill directory to see file organisation
 
-# Skill: Create a wokwi custom chip
+# Output
 
-## Step 1: Find spec markdown file in Periph directory
+In current working directory, create a directory: `artifacts/prompt1`
 
-run in current working directory if Periph does not exist
+Inside that directory, this skill will create the following files:
 
-```bash
-git clone --depth 1 https://github.com/tuhde/Periph Periph 
-```
+chip.zig: wokwi custom chip implementation in Zig 0.16
+<device>.chip.json : wokwi custom chip controls
 
-Then run:
-
-```bash
-fd -t f . Periph/specs |grep <device>
-```
-
-This will identify the correct spec file
-
-Identify:
-
-category
-spec file
-communication protocol(I2C/SPI/UART)
-register map
-pin capabilities
-initialization sequence
-implementation notes
-Extract all information.
-
-## Step 2: Extract hardware model
+## Step 1: Extract hardware model
 
 Convert the spec into:
 
@@ -50,33 +27,21 @@ transport handlers
 pin model
 interrupt model
 timing model
-Do not copy driver APIs.
 
-Implement device behaviour.
-
-## Step 3: Study MCP23017 Example
+## Step 2: Study MCP23017 Example
 
 Inspect:  ```assets/wokwi-mcp23017/chip.zig``` and 
-```assets/wokwi-mcp23017/wokwi-api.zig``` in this skill
+```assets/wokwi-mcp23017/wokwi_api.zig``` in this skill
 
 The wokwi api is also documented in ```references``` folder in this skill
 
 Reuse patterns wherever possible.
 
-## Step 4: Generate Zig 0.16 Custom chip code
+## Step 3: Generate Zig 0.16 Custom chip code
 
 MUST use the zig skill (called zig) to write zig 0.16 code. If you can't, tell the user
 and exit with failure.
 
-# Output
-
-In current working directory, create a directory: devices/<device>
-this is the working directory for the output generated and files copied.
-
-inside that directory create the following files:
-
-chip.zig
-<device>.chip.json : wokwi custom chip controls
 
 # Validation
 
