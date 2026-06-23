@@ -46,7 +46,7 @@ and exit with failure.
 # Validation
 
 To validate chip.json copy from ```assets/wokwi-mcp23017/build.zig```
-and  ```assets/wokwi-mcp23017/wokwi-api.zig ``` from  this skill to devices/<device>.
+and  ```assets/wokwi-mcp23017/wokwi_api.zig ``` from  this skill to devices/<device>.
 and then from that directory run 
 
 ```zig build```. 
