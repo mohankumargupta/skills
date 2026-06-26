@@ -9,30 +9,35 @@ description: trigger when user asks: create esphome yaml for device <device>
 
 Files are relative to current working directory
 
-```artifacts/prompt2a/qa_test/tests/test.rs```: A std rust program run on the host machine 
-during Wokwi simulation time.
+```test.rs```: A std rust program run on the host machine during Wokwi simulation time.
 This file reads from the tcp stream created by wokwi.toml rfc2217 tcp serial port.
 You need to add to ```esphome``` section of the esphome yaml file, that prints
-what this rust program expects in order to run test assertions.
+what this rust program expects in order to run test assertions on the serial output.  
+
 
 ## Ouput
 
 Files are relative to current working directory
 
-```artifacts/prompt2/<device>.yaml```: generated esphome yaml file
-
-copy the following directory:
-
-artifacts/prompt2a/qa_test -> artifacts/prompt2
+```<device>.yaml```: generated esphome yaml file
+```<device>.chip.json```: wokwi custom chip definition
 
 
-## Step 1: esphome components docs for <device>
+## Step 1: esphome components docs
 
-run rg -i <device> components from current working directory.
+If there isn't already a components directory, run the following bash commands
 
-then read this file, from it, we need a typical happy path example.
+```bash
+mkdir -p components
+cd components
+npx degit https://github.com/esphome/esphome.io/src/content/docs/components
+```
 
-## Step 2: Use ESPHome template
+## Step 2: look up docs for <device>
+
+Look up docs for <device>, it will tell you how to add device to esphome yaml
+
+## Step 3: Use ESPHome template
 
 There is a file: `references/template.yaml` inside this skill.
 
@@ -48,16 +53,14 @@ Template preservation rules:
 
 There is one and only one exception to this rule, and that is to add a on_boot to the core
 esphome configuration. This is where you essentially would run an automation script to 
-test behaviour, you MUST add this section such that if wokwi custom chip behaves correctly, 
-then output from on_boot section would cause the tests to pass.
+test behaviour, if appropriate.
 
+Create a file called `<device>.yaml` in the current working directory. The final file must begin with the exact contents of `references/template.yaml`, 
+followed by the device configuration for a typical use case.
 
 ### Step 4: Validate esphome config
 
-run from artifacts/prompt2 
-
 ```sh
-
 esphome config <device>.yaml
 
 ```
