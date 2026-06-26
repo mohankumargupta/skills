@@ -5,6 +5,11 @@ description: trigger when user asks: create esphome yaml for device <device>
 
 # SKILL: ESPHome yaml
 
+## Reference 
+
+`references/core-configuration.md`: esphome core configuration, particularly on_boot
+
+
 ## Input
 
 Files are relative to current working directory
@@ -19,24 +24,26 @@ what this rust program expects in order to run test assertions.
 
 Files are relative to current working directory
 
-```artifacts/prompt2/<device>.yaml```: generated esphome yaml file
+`artifacts/prompt2/<device>.yaml`: generated esphome yaml file
 
-copy the following directory:
-
-artifacts/prompt2a/qa_test -> artifacts/prompt2
 
 
 ## Step 1: esphome components docs for <device>
 
-run rg -i <device> components from current working directory.
+run this command verbatim from current working directory, replacing <device>:
+
+```bash
+rg -i <device> components 
+```
 
 then read this file, from it, we need a typical happy path example.
 
 ## Step 2: Use ESPHome template
 
-There is a file: `references/template.yaml` inside this skill.
+There is a file: `assets/template.yaml` inside this skill.
 
-You MUST copy the contents of `references/template.yaml` into the new YAML file verbatim before adding anything else.
+You MUST copy the contents of `assets/template.yaml` into the new YAML file 
+`artifacts/prompt2/<device>.yaml` verbatim before adding anything else to this file.
 
 Template preservation rules:
 - Do not remove any line from the template.
@@ -54,12 +61,10 @@ then output from on_boot section would cause the tests to pass.
 
 ### Step 4: Validate esphome config
 
-run from artifacts/prompt2 
+run from `artifacts/prompt2` 
 
-```sh
-
+```bash
 esphome config <device>.yaml
-
 ```
 
 
