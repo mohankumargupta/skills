@@ -19,6 +19,10 @@ it that has been created previously, so add it like any other custom chip.
 `artifacts/prompt1/<device>.chip.json`: read this file to set attributes defaults. Must 
 explicitly set all attributes to values from test.rs file that make sense.
 
+## Output
+
+`artifacts/prompt3/diagram.json`: create the directory if it doesn't exist
+
 ## References
 
 Under references folder under this skill.
