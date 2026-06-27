@@ -14,6 +14,11 @@ The microcontroller is **always** `board-esp32-c3-devkitm-1`.
 the <device> is not in the builtin parts list but there is a custom chip for 
 it that has been created previously, so add it like any other custom chip.
 
+## Input
+`artifacts/prompt2a/qa_test/tests/test.rs`: read this to help set defaults for wokwi custom chip attributes 
+`artifacts/prompt1/<device>.chip.json`: read this file to set attributes defaults. Must 
+explicitly set all attributes to values from test.rs file that make sense.
+
 ## References
 
 Under references folder under this skill.
