@@ -1,0 +1,11 @@
+[wokwi]
+version = 1
+firmware = '.esphome/build/<device>/.pioenvs/<device>/firmware.bin'
+elf = '.esphome/build/<device>/.pioenvs/<device>/firmware.elf'
+
+# wifi SSID is Wokwi-GUEST
+# https://docs.wokwi.com/guides/esp32-wifi
+
+[[chip]]
+name = "<device>"
+binary = "chip/chip.wasm"
