@@ -11,7 +11,7 @@ description: Create spec markdown from datasheet for <device>
 
 ## Step 1 Download esphome.io components
 
-run `component.sh` inside the current working directory
+run `components.sh`
 
 ## Step 2 Find esphome.io docs markdown 
 
