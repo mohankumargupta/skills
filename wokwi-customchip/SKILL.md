@@ -3,6 +3,11 @@ name: wokwi-customchip
 description: Create a Wokwi custom chip for device <device> in zig 0.16
 ---
 
+# Context variables 
+
+<originalpwd>: run pwd, this will be referred to as <originalpwd>
+<artifacts_dir>: This is a directory equal to <originalpwd>/artifacts/prompt1
+
 # Input
 
 `artifacts/prompt0/<device>.md`: Spec file for <device>
@@ -10,7 +15,7 @@ description: Create a Wokwi custom chip for device <device> in zig 0.16
 
 # Output
 
-In current working directory, create a directory: `artifacts/prompt1`
+create directory <artifacts_dir>
 
 Inside that directory, this skill will create the following files:
 
@@ -66,7 +71,7 @@ now validate ```<device>.chip.json``` by running
 
 # Before finishing
 
-Before finishing, write <device>_IMPROVEMENTS.md in the current working directory. 
+Before finishing, write <device>_IMPROVEMENTS.md in <originalpwd> directory 
 
 Capture problems encountered, 
 ambiguities in the instructions, 

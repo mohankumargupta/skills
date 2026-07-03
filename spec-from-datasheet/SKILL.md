@@ -3,21 +3,10 @@ name: spec-from-datasheet
 description: Create spec markdown from datasheet for <device>
 ---
 
-Run ONLY this command, with no flags, no chaining, and no companion commands:
- 
-```bash
-pwd
-```
+# Context variables
 
-This will be referred to as `<originalpwd>` in the rest of this skill.
-
-
-Do not append  && ,  ; , or  | . Do not run any other shell command in this skill.
-Do not list the home directory. Do not run anything after this.
-
-
-All scripts are in the `scripts` folder of this skill.
-They are to be run in the current working directory.
+<original_pwd>: run pwd, this is <original_pwd>
+<artifacts_dir>: this directory is <original_pwd>/artifacts/prompt1
 
 
 ## Step 1 Download esphome.io components
@@ -60,8 +49,8 @@ rg -i <name_of_component> components
 3. once you found a datasheet url there is a script inside this skill called `analog.sh`
      usage: analog.sh <datasheet_url>
      this will return the actual url which you can download from.
-4. Create directory `datasheets/<device>`
-5. Download the datasheet as `datasheets/<device>/<device>.pdf`
+4. Create directory `<original_pwd>/datasheets/<device>`
+5. Download the datasheet as `<original_pwd>/datasheets/<device>/<device>.pdf`
 6. Ignore if `file name_of_datasheet` returns encypted, it is usually a false flag.
    qpdf is installed.
 
@@ -75,7 +64,7 @@ uv add pymupdf4llm
 
 
 copy `assets/datasheet_device/main.py` and `assets/datasheet_device/template_chip.md` from this skill 
-and copy it to `datasheets/<device>` in the current directory.
+and copy it to `<original_pwd>/datasheets/<device>` .
 
 ## Step 4: convert pdf to mardown
 
@@ -86,13 +75,13 @@ uv run main.py <device>.pdf <device>_datasheet.md
 
 ## Step 5: Produce finished markdown
 
-Take `datasheets/<device>/<device>_datasheet.md` as the source of truth and 
-`datasheets/<device>/template_chip.md` as template and produce `artifacts/prompt0/<device>.md`
+Take `<original_pwd>/datasheets/<device>/<device>_datasheet.md` as the source of truth and 
+`<original_pwd>/datasheets/<device>/template_chip.md` as template and produce `<artifacts_dir>/<device>.md`
 which fills out template from source of truth only.
 
 
 ## Step 6 Finishing up
 
-Before finishing, write a doc called `<device>_spec.md` in directory `<originalpwd>` for comments about this skill
-including obstacles and improvements.
+Before finishing, write a doc called `<original_pwd>/<device>_spec.md` 
+for comments about this skill including obstacles and improvements.
 

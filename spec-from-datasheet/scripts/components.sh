@@ -2,14 +2,11 @@
 
 set -x
 
-if [[ -d components ]]; then
+if [[ -d components && -d esphome ]]; then
   exit 0
 fi
 
-if [[ -d esphome ]]; then
-  exit 0
-fi
-
+rm -rf components esphome
 mkdir -p components
 cd components
 npx -y degit -f https://github.com/esphome/esphome.io/src/content/docs/components
