@@ -26,12 +26,32 @@ run `component.sh` inside the current working directory
 
 ## Step 2 Find esphome.io docs markdown 
 
+
+
 Then run this from current working directory:
 ```bash
-rg -i <device>
+rg -i <device> components
 ```
 
+
+
 This will give you a path relative to current directory to esphome docs for <device>.
+
+If that returns empty,it means that the name of the device is not the same as name of
+esphome component that we are looking for.
+You will need to run this from current working directory.
+
+```bash
+rg -i <device> esphome
+```
+
+It is now important that based on what you found you now search again at components dir,
+because it is the markdown doc we need
+
+```bash
+rg -i <name_of_component> components 
+```
+
 
 ## Step 2: Download datasheet
 

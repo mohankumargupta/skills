@@ -17,9 +17,10 @@ mkdir -p $destination
 mkdir -p $chipfolder
 mkdir -p $qatest/src
 mkdir -p $qatest/tests
-cp artifacts/prompt1/{"$DEVICE.chip.json",dist/chip.wasm} $chipfolder
+cp "artifacts/prompt1/$DEVICE.chip.json" $chipfolder
+cp "artifacts/prompt1/dist/chip.wasm" $chipfolder
 mv "$chipfolder/$DEVICE.chip.json" "$chipfolder/chip.json"
-cp "artifacts/prompt2/$DEVICE.yaml" $destination
+#cp "artifacts/prompt2/$DEVICE.yaml" $destination
 cp $rustinput/src/*.rs $qatest/src
 cp $rustinput/tests/*.rs $qatest/tests
 cp $rustinput/Cargo.toml $qatest
