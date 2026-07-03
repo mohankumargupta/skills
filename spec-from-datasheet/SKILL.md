@@ -6,7 +6,7 @@ description: Create spec markdown from datasheet for <device>
 # Context variables
 
 <original_pwd>: run pwd, this is <original_pwd>
-<artifacts_dir>: this directory is <original_pwd>/artifacts/prompt1
+<artifacts_dir>: this directory is <original_pwd>/artifacts/prompt0
 
 
 ## Step 1 Download esphome.io components
