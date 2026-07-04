@@ -5,8 +5,8 @@ description: Create a Wokwi custom chip for device <device> in zig 0.16
 
 # Context variables 
 
-<originalpwd>: run pwd, this will be referred to as <originalpwd>
-<artifacts_dir>: This is a directory equal to <originalpwd>/artifacts/prompt1
+<original_pwd>: run pwd, this will be referred to as <original_pwd>
+<artifacts_dir>: This is a directory equal to <original_pwd>/artifacts/prompt1
 
 # Input
 
@@ -15,12 +15,8 @@ description: Create a Wokwi custom chip for device <device> in zig 0.16
 
 # Output
 
-create directory <artifacts_dir>
-
-Inside that directory, this skill will create the following files:
-
-chip.zig: wokwi custom chip implementation in Zig 0.16
-<device>.chip.json : wokwi custom chip controls
+`<artifacts_dir>/chip.zig`: wokwi custom chip implementation in Zig 0.16
+`<artifacts_dir>/<device>.chip.json` : wokwi custom chip controls
 
 ## Step 1: Extract hardware model
 
@@ -46,7 +42,7 @@ Reuse patterns wherever possible.
 
 ## Step 3: Generate Zig 0.16 Custom chip code
 
-Write zig 0.16 code for the custom chip and save as `artifacts/prompt1/chip.zig`
+Write zig 0.16 code for the custom chip and save as `<artifacts_dir>/chip.zig`
 
 
 # Validation
@@ -56,22 +52,25 @@ To validate chip.zig and <device>.chip.json copy from this skill the following f
  `assets/wokwi-mcp23017/wokwi_api.zig` 
  `assets/chip.schema.json`
 
-Copy to
- `artifacts/prompt1` in current working directoy. 
+Copy to `<artifacts_dir>` 
 
-Then run from `artifacts/prompt1`:
+First, run from `<artifacts_dir>`:
+
+`zig fmt chip.zig`
+
+Then run from `<artifacts_dir>`:
 `zig build`. 
 
 If successful, it should produce a dist/chip.wasm
 
-now validate ```<device>.chip.json``` by running 
+now validate `<device>.chip.json` by running 
 
 ```jsonschema-cli validate chip.schema.json -i <device>.chip.json```
 
 
 # Before finishing
 
-Before finishing, write <device>_IMPROVEMENTS.md in <originalpwd> directory 
+Before finishing, write `<original_pwd>/<device>_IMPROVEMENTS.md` 
 
 Capture problems encountered, 
 ambiguities in the instructions, 
