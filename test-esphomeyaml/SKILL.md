@@ -1,9 +1,14 @@
 ---
 name: test-esphomeyaml
-description: trigger when user asks: create rust test for esphome yaml for device <device>
+description: trigger when user asks - create rust test file called test.rs for esphome yaml for device <device>
 ---
 
-# SKILL: Rust test for ESPHome yaml
+# Context variables
+<original_pwd>: run pwd, this is <original_pwd>
+<spec_dir>: `<original_pwd>/artifacts/prompt0`
+<artifacts_dir>: `<original_pwd>/artifacts/prompt2a`
+
+# Description 
 
 Given a spec file, we need to create a rust test script that tests assertions of a wokwi 
 custom chip running inside VSCode simulator.
@@ -15,16 +20,13 @@ The rust test program runs test assertions against the stream coming to verify c
 
 ## Input
 
-Files are relative to current working directory
-
-```artifacts/prompt0/<device>.md```: Spec file for device from which rust test it to be created.
-
+`<spec_dir>/<device>.md`: Spec file for device from which rust test it to be created.
 
 ## Ouput
 
 Files are relative to current working directory
 
-```artifacts/prompt2a/qa_test/tests/test.rs```: rust std test file that contains tests
+`<artifacts_dir>/qa_test/tests/test.rs`: rust std test file that contains tests
 
 # Instructions
 
@@ -35,11 +37,11 @@ it is in `assets/qa_test/tests/assert_serial.rs` of this skill.
   
 ## Step 1: create rust project
 
-run in the current  working directory.
+run from <original_pwd>
 
 ```bash
-mkdir artifacts/prompt2a
-cd prompt2a
+mkdir <artifacts_dir>
+cd <artifacts_dir>
 cargo new --lib qa_test
 mkdir tests
 ```
@@ -63,3 +65,10 @@ Run from `artifacts/prompt2a/qa_test`:
 ```bash
 cargo build --target aarch64-unknown-linux-gnu
 ```
+
+If there are errors, fix them and recompile.
+
+## Step 4: Create improvement doc
+
+Create a file called `<original_pwd>/<device>_testrs.md` with obstacles and limitations you came
+across while completing this skill.

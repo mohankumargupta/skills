@@ -3,18 +3,15 @@ name: ESPHome yaml
 description: trigger when user asks: create esphome yaml for device <device>
 ---
 
-# SKILL: ESPHome yaml
-
-## Reference 
-
-`references/core-configuration.md`: esphome core configuration, particularly on_boot
+# Context variables
+<original_pwd>: run pwd, this is <original_pwd>
+<artifacts_dir>: directory is `<original_pwd>/artifacts/prompt2a`
 
 
 ## Input
 
-Files are relative to current working directory
 
-```artifacts/prompt2a/qa_test/tests/test.rs```: A std rust program run on the host machine 
+```<artifacts_dir>/qa_test/tests/test.rs```: A std rust program run on the host machine 
 during Wokwi simulation time.
 This file reads from the tcp stream created by wokwi.toml rfc2217 tcp serial port.
 You need to add to ```esphome``` section of the esphome yaml file, that prints
@@ -27,6 +24,9 @@ Files are relative to current working directory
 `artifacts/prompt2/<device>.yaml`: generated esphome yaml file
 
 
+## Reference 
+
+`references/core-configuration.md`: esphome core configuration, particularly on_boot
 
 ## Step 1: esphome components docs for <device>
 
