@@ -5,22 +5,22 @@ description: trigger when user asks - create rust test file called test.rs for e
 
 # Context variables
 <original_pwd>: run pwd, this is <original_pwd>
-<spec_dir>: `<original_pwd>/artifacts/prompt0`
-<artifacts_dir>: `<original_pwd>/artifacts/prompt2a`
+<narrator_contract>: `<original_pwd>/artifacts/prompt2b`
+<artifacts_dir>: `<original_pwd>/artifacts/prompt2c`
 
 # Description 
 
-Given a spec file, we need to create a rust test script that tests assertions of a wokwi 
+Given a narrator contract, we need to create a rust test script that tests assertions of a wokwi 
 custom chip running inside VSCode simulator.
 
-A std rust test run on the host machine during Wokwi simulation time.
+A std rust test test.rs run on the host machine during Wokwi simulation time.
 The program reads from the tcp stream created by wokwi.toml rfc2217 tcp serial port.
-The rust test program runs test assertions against the stream coming to verify correct behaviour. 
-
+The rust test program runs test assertions against the stream coming to verify correct behaviour
+of the wokwi custom chip. 
 
 ## Input
 
-`<spec_dir>/<device>.md`: Spec file for device from which rust test it to be created.
+`<narrator_contract>`: narrator contract that test.rs will need to conform to.
 
 ## Ouput
 
@@ -31,8 +31,8 @@ Files are relative to current working directory
 # Instructions
 
 You are going to create test using the information 
-in `artifacts/prompt0/<device>.md` and with the example called 
-`assets/_test_example.rs` as a guide. Also if you need to know definition of assert_serial,
+in `<narrator_contract>` and with the example called 
+`assets/_test_example.rs` in this skill as a guide. Also if you need to know definition of assert_serial,
 it is in `assets/qa_test/tests/assert_serial.rs` of this skill.
   
 ## Step 1: create rust project
@@ -50,17 +50,17 @@ mkdir tests
 
 Copy the following files from this skill to path relative to current working directory:
 
-`assets/qa_test/src/assert_serial.rs` -> `artifacts/prompt2a/qa_test/src`
-`assets/qa_test/src/lib.rs`           -> `artifacts/prompt2a/qa_test/src`
+`assets/qa_test/src/assert_serial.rs` -> `<artifacts_dir>/qa_test/src`
+`assets/qa_test/src/lib.rs`           -> `<artifacts_dir>/qa_test/src`
 
 
 ## Step 3: Create test 
 
-Generate `artifacts/prompt2a/qa_test/tests/test.rs`. Remember we want happy path, no edge cases.
+Generate `<artifacts_dir>/qa_test/tests/test.rs`. Remember we want happy path, no edge cases.
 
 ## Step 3: Compile
 
-Run from `artifacts/prompt2a/qa_test`:
+Run from `<artifacts_dir>/qa_test`:
 
 ```bash
 cargo build --target aarch64-unknown-linux-gnu
