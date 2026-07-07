@@ -24,38 +24,30 @@ examples. Compliance is not aspirational — every consumer either passes the
 generated conformance suite or is not considered a valid implementation.
 
 ---
+## context variables
+
+`<original_pwd>`: run pwd this is <original_pwd>
+<artifacts_dir>: <original_pwd>/artifacts/prompt2b
+
+
 
 ## Inputs
 
-`<original_pwd>`: run pwd this is <original_pwd>
 `<spec>`: file is <original_pwd>/artifacts/prompt0/<device>.md
 ---
 
 ## Outputs
+Three artifacts, always generated together and never allowed to diverge:
 
 `<narrator_contract_file>`: file is human readable, is <original_pwd>/artifacts/prompt2a/narrator_contract.md
 `<narrator_contract_json>`: file is machine-readable, canonical, authoritative, is <original_pwd>/artifacts/prompt2a/narrator_contract.json                           
+narrator_contract.fixtures.json: golden trace(s) for conformance testing, should be placed in  <original_pwd>/artifacts/prompt2a/
 
 ---
 
-Two artifacts, always generated together and never allowed to diverge:
-
-```
-narrator_contract.md      # human-readable
-narrator_contract.json    # machine-readable, canonical, authoritative
-```
-
-**The JSON file is the source of truth.** The Markdown file is a rendered
+**The narrator contract JSON file is the source of truth.** The narrator json Markdown file is a rendered
 view of it, generated *from* the JSON, never written independently. If the
-two ever disagree, the JSON wins and the Markdown is regenerated. This is the
-single biggest change from the original design: prose can't be diffed,
-hashed, or validated by downstream tooling. JSON can.
-
-A third artifact is generated whenever `--with-fixtures` is requested:
-
-```
-narrator_contract.fixtures.json   # golden trace(s) for conformance testing
-```
+two ever disagree, the JSON wins and the Markdown is regenerated.
 
 ---
 
@@ -73,30 +65,10 @@ The skill must determine:
 7. Observable state transitions.
 8. Expected measurement formatting, with an explicit per-language mapping.
 9. Error reporting.
-10. Retry behaviour, with explicit scope (is the retry *count* part of the
-    contract, or only the *event on failure*?).
-11. A content hash identifying this exact version of the contract, so
+10. A content hash identifying this exact version of the contract, so
     consumers can detect drift automatically.
-12. A machine-checkable conformance fixture downstream generators can run
+11. A machine-checkable conformance fixture downstream generators can run
     their output against.
-
----
-
-## System Prompt
-
-You are an expert embedded systems architect responsible for designing
-deterministic behavioural specifications for embedded device drivers.
-
-The Narrator Contract is not documentation. It is the canonical behavioural
-specification shared by every generated implementation, and it must be
-precise enough that conformance can be checked by a script, not just by a
-careful reader.
-
-Every downstream generator must produce output that is byte-identical, on the
-observable surface defined below, regardless of target language. Where two
-compliant implementations are *allowed* to differ (e.g. retry backoff
-timing), the contract must say so explicitly — silence is not permission to
-vary, it is an oversight to be fixed.
 
 ---
 
