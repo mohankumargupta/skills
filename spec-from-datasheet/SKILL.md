@@ -5,13 +5,14 @@ description: Create spec markdown from datasheet for <device>
 
 # Context variables
 
-<original_pwd>: run pwd, this is <original_pwd>
-<artifacts_dir>: this directory is <original_pwd>/artifacts/prompt0
-
+<original_pwd>:  run pwd, this is <original_pwd>
+<artifacts_dir>: this directory is <original_pwd>/artifacts/<device>/prompt0, will need to be created
+<datasheet_dir>: <artifacts_dir>/datasheet, need to create directory
+<feedback_file>: <original_pwd>/feedback/<device>/prompt0.mde
 
 ## Step 1 Download esphome.io components
 
-run `components.sh`
+run `components.sh` from this skill
 
 ## Step 2 Find esphome.io docs markdown 
 
@@ -49,39 +50,40 @@ rg -i <name_of_component> components
 3. once you found a datasheet url there is a script inside this skill called `analog.sh`
      usage: analog.sh <datasheet_url>
      this will return the actual url which you can download from.
-4. Create directory `<original_pwd>/datasheets/<device>`
-5. Download the datasheet as `<original_pwd>/datasheets/<device>/<device>.pdf`
+4. Create directory `<datasheet_dir>`
+5. Download the datasheet as `<datasheetr_dir>/<device>.pdf`
 6. Ignore if `file name_of_datasheet` returns encypted, it is usually a false flag.
    qpdf is installed.
 
 ## Step 3: Prepare extraction environment
 
 ```bash
-cd datasheets/<device>
+cd <datasheet_dir>
 uv init
 uv add pymupdf4llm
 ```
 
 
 copy `assets/datasheet_device/main.py` and `assets/datasheet_device/template_chip.md` from this skill 
-and copy it to `<original_pwd>/datasheets/<device>` .
+and copy it to `<datasheet_dir>` .
 
-## Step 4: convert pdf to mardown
+## Step 4: convert pdf to markdown
 
 ```bash
-cd datasheets/<device>
+cd <datasheet_dir>
 uv run main.py <device>.pdf <device>_datasheet.md
 ```
 
 ## Step 5: Produce finished markdown
 
-Take `<original_pwd>/datasheets/<device>/<device>_datasheet.md` as the source of truth and 
-`<original_pwd>/datasheets/<device>/template_chip.md` as template and produce `<artifacts_dir>/<device>.md`
+Take `<datasheet_dir>/<device>_datasheet.md` as the source of truth and 
+`<datasheet_dir>/template_chip.md` as template and produce `<artifacts_dir>/<device>.md`
 which fills out template from source of truth only.
 
 
 ## Step 6 Finishing up
 
-Before finishing, write a doc called `<original_pwd>/<device>_spec.md` 
-for comments about this skill including obstacles and improvements.
+Before finishing, write a doc called `<feedback_file>` 
+for comments about this skill 
+including obstacles and improvements.
 
