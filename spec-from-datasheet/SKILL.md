@@ -8,7 +8,9 @@ description: Create spec markdown from datasheet for <device>
 <original_pwd>:  run pwd, this is <original_pwd>
 <artifacts_dir>: this directory is <original_pwd>/artifacts/<device>/prompt0, will need to be created
 <datasheet_dir>: <artifacts_dir>/datasheet, need to create directory
-<feedback_file>: <original_pwd>/feedback/<device>/prompt0.mde
+<final_spec_file>: <artifacts_dir>/<device>.md
+<feedback_dir>:  <original_pwd>/feedback/<device>, need to create directory
+<feedback_file>: <feedback_dir>/prompt0.md
 
 ## Step 1 Download esphome.io components
 
@@ -77,7 +79,7 @@ uv run main.py <device>.pdf <device>_datasheet.md
 ## Step 5: Produce finished markdown
 
 Take `<datasheet_dir>/<device>_datasheet.md` as the source of truth and 
-`<datasheet_dir>/template_chip.md` as template and produce `<artifacts_dir>/<device>.md`
+`<datasheet_dir>/template_chip.md` as template and produce `<final_spec_file>`
 which fills out template from source of truth only.
 
 
