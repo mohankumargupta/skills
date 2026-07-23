@@ -5,9 +5,6 @@ description: trigger when user asks: create esphome yaml for device <device>
 
 # Context variables
 
-Print out the values of each of these variables before running the rest of skill. 
-If they don't resolve, abort.
-
 <original_pwd>: run pwd, this is <original_pwd>
 <artifacts_dir>: directory is `<original_pwd>/artifacts/prompt2b`, you will need to create this.
 <testrs>: file <original_pwd>/artifacts/prompt2a/qa_test/tests/test.rs

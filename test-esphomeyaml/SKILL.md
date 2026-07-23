@@ -5,8 +5,10 @@ description: trigger when user asks - create rust test file called test.rs for e
 
 # Context variables
 <original_pwd>: run pwd, this is <original_pwd>
-<narrator_contract>: `<original_pwd>/artifacts/prompt2b`
-<artifacts_dir>: `<original_pwd>/artifacts/prompt2c`
+<narrator_contract>: `<original_pwd>/artifacts/<device>/prompt2a`
+<artifacts_dir>: `<original_pwd>/artifacts/<device>/prompt2b`, needs to be created
+<feedback_dir>: <original_pwd>/feedback/<device>, needs to be created
+<feedback_file>: <feedback_dir>/prompt2b.md
 
 # Description 
 
@@ -70,5 +72,5 @@ If there are errors, fix them and recompile.
 
 ## Step 4: Create improvement doc
 
-Create a file called `<original_pwd>/<device>_testrs.md` with obstacles and limitations you came
+Create a file called `<feedback_file>` with obstacles and limitations you came
 across while completing this skill.

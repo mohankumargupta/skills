@@ -27,21 +27,22 @@ generated conformance suite or is not considered a valid implementation.
 ## context variables
 
 `<original_pwd>`: run pwd this is <original_pwd>
-<artifacts_dir>: <original_pwd>/artifacts/prompt2b
-
+<artifacts_dir>: <original_pwd>/artifacts/<device>/prompt2a, will have to create
+<feedback_dir>:  <original_pwd>/feedback/<device>, will have to create
+<feedback_file>: <feedback_dir>/prompt2a.md
 
 
 ## Inputs
 
-`<spec>`: file is <original_pwd>/artifacts/prompt0/<device>.md
+`<spec>`: file is <original_pwd>/artifacts/<device>/prompt0/<device>.md
 ---
 
 ## Outputs
 Three artifacts, always generated together and never allowed to diverge:
 
-`<narrator_contract_file>`: file is human readable, is <original_pwd>/artifacts/prompt2a/narrator_contract.md
-`<narrator_contract_json>`: file is machine-readable, canonical, authoritative, is <original_pwd>/artifacts/prompt2a/narrator_contract.json                           
-narrator_contract.fixtures.json: golden trace(s) for conformance testing, should be placed in  <original_pwd>/artifacts/prompt2a/
+`<narrator_contract_file>`: file is human readable, is <artifacts_dir>/narrator_contract.md
+`<narrator_contract_json>`: file is machine-readable, canonical, authoritative, is <artifacts_dir>/narrator_contract.json                           
+narrator_contract.fixtures.json: golden trace(s) for conformance testing, should be placed in  <artifacts_dir>
 
 ---
 
@@ -256,3 +257,8 @@ authored separately.
 
 ---
 
+## Finishing up
+
+Before finishing, write a doc called `<feedback_file>`
+for comments about this skill
+including obstacles and improvements.
