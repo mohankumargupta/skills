@@ -5,12 +5,14 @@ description: Create a Wokwi custom chip for device <device> in zig 0.16
 
 # Context variables 
 
-<original_pwd>: run pwd, this will be referred to as <original_pwd>
-<artifacts_dir>: This is a directory equal to <original_pwd>/artifacts/prompt1
+<original_pwd>:  run pwd, this will be referred to as <original_pwd>
+<artifacts_dir>: <original_pwd>/artifacts/prompt1, create this directory
+<feedback_dir>:  <original_pwd>/feedback/<device>
+<feedback_file>: <feedback_dir>/prompt1.md
 
 # Input
 
-`artifacts/prompt0/<device>.md`: Spec file for <device>
+`artifacts/<device>/prompt0/<device>.md`: Spec file for <device>
 
 
 # Output
@@ -70,7 +72,7 @@ now validate `<device>.chip.json` by running
 
 # Before finishing
 
-Before finishing, write `<original_pwd>/<device>_IMPROVEMENTS.md` 
+Before finishing, write `<feedback_file>` 
 
 Capture problems encountered, 
 ambiguities in the instructions, 
