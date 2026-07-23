@@ -6,8 +6,8 @@ description: trigger when user asks: create esphome yaml for device <device>
 # Context variables
 
 <original_pwd>: run pwd, this is <original_pwd>
-<artifacts_dir>: directory is `<original_pwd>/artifacts/prompt2b`, you will need to create this.
-<testrs>: file <original_pwd>/artifacts/prompt2a/qa_test/tests/test.rs
+<artifacts_dir>: directory is `<original_pwd>/artifacts/<device>/prompt2d`, you will need to create this.
+<narrator_contract>: <original_pwd>/artifacts/<device>/prompt2a/narrator_contract.md
 
 ## Befor starting - Task Tracking & Progress
 - **Mandatory Checklist**: Always start every task by generating a detailed markdown checklist using `- [ ]` for pending steps and `- [x]` for completed steps.
@@ -18,31 +18,29 @@ description: trigger when user asks: create esphome yaml for device <device>
 
 ## Input
 
+<narrator_contract>: yaml needs to implement this in full, downstream consumers rely on this.
 
 ```<testrs>```: A std rust program run on the host machine 
 during Wokwi simulation time.
 This file reads from the tcp stream created by wokwi.toml rfc2217 tcp serial port.
-You need to add to ```esphome``` section of the esphome yaml file, that prints
-what this rust program expects in order to run test assertions.
 
-## Ouput
+## Output
 
 `<artifacts_dir>/<device>.yaml`: generated esphome yaml file
 
+## Mandatory Section in yaml file
+You need to add on_boot section to ```esphome``` section of the esphome yaml file, that fulfills
+most of narrator_contract.
 
 ## Reference 
-
+this is located in this skill.
 `references/core-configuration.md`: esphome core configuration, particularly on_boot
 
-## Step 1: esphome components docs for <device>
+## Step 1: read narrator contractor
 
 run this command verbatim from current working directory, replacing <device>:
 
-```bash
-rg -i <device> components 
-```
-
-then read this file, from it, we need a typical happy path example.
+read this file, from it, we need a typical happy path example.
 
 ## Step 2: Use ESPHome template
 
@@ -61,7 +59,7 @@ Template preservation rules:
 
 ## One and only one exception template preservation rule
 
-MUST add a on_boot to the coreesphome configuration. 
+MUST add a on_boot to the corresponding esphome configuration. 
 
 This is where you essentially would run an automation script to 
 test behaviour, you MUST add this section such that if wokwi custom chip behaves correctly, 
