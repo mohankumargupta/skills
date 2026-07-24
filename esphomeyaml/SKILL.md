@@ -7,14 +7,14 @@ description: trigger when user asks: create esphome yaml for device <device>
 
 <original_pwd>: run pwd, this is <original_pwd>
 <artifacts_dir>: directory is `<original_pwd>/artifacts/<device>/prompt2d`, you will need to create this.
-<narrator_contract>: <original_pwd>/artifacts/<device>/prompt2a/narrator_contract.md
+<narrator_contract>:  <original_pwd>/artifacts/<device>/prompt2a/narrator_contract.md
+<feedback_dir>: <original_pwd>/feedback/<device>, you will need to create this
+<feedback_file>: <feedback_dir>/prompt2d.md
 
 ## Befor starting - Task Tracking & Progress
 - **Mandatory Checklist**: Always start every task by generating a detailed markdown checklist using `- [ ]` for pending steps and `- [x]` for completed steps.
 - **Incremental Updates**: Update this checklist dynamically after completing every individual step. Do not skip printing or updating this progress log.
 - **Workflow State**: If transitioning between multiple tools, output the updated todo list first so the user can track the pipeline execution.
-
-
 
 ## Input
 
@@ -81,6 +81,6 @@ esphome config <device>.yaml
 
 ### Step 5: create markdown doc
 
-generate a file called <original_pwd>/<device>_esphomeyaml.md provide details of obstacles you 
+generate a file called <feedback_file> provide details of obstacles you 
 faced and improvements you would make
 
