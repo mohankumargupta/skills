@@ -20,9 +20,7 @@ description: trigger when user asks: create esphome yaml for device <device>
 
 <narrator_contract>: yaml needs to implement this in full, downstream consumers rely on this.
 
-```<testrs>```: A std rust program run on the host machine 
-during Wokwi simulation time.
-This file reads from the tcp stream created by wokwi.toml rfc2217 tcp serial port.
+<artifacts_dir>/<device>/prompt0/esphome_component.txt: contains name of esphome component for <device>
 
 ## Output
 
@@ -42,7 +40,19 @@ run this command verbatim from current working directory, replacing <device>:
 
 read this file, from it, we need a typical happy path example.
 
-## Step 2: Use ESPHome template
+## Step 2a: find esphome docs and optionally source code for <device>
+
+read <artifacts_dir>/<device>/prompt0/esphome_component.txt. this tells the 
+name where to find esphome docs,  in <original_pwd>/components/sensor/<name_of_component>.mdx
+
+you must use the esphome component in the final yaml file
+
+
+optionally, if needed, you can look at esphome source code for that component in 
+esphome/esphome/components/<name_of_component>
+
+
+## Step 2b: Use ESPHome template
 
 There is a file: `assets/template.yaml` inside this skill.
 

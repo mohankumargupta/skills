@@ -44,6 +44,7 @@ because it is the markdown doc we need
 rg -i <name_of_component> components 
 ```
 
+create a file called <artifacts_dir>/esphome_component.txt with the name of esphome component.
 
 ## Step 2: Download datasheet
 
