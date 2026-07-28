@@ -3,12 +3,16 @@ name: wokwi-wokwitoml
 description: trigger when: create wokwi.toml for device <device>
 ---
 
-use from this skill:
+## Context Variables
+<original_pwd>: run pwd, this is <original_pwd>
+<artifacts_dir>: directory is <original_pwd>/artifacts/<device>/prompt2b, you will need to create this.
+<wokwi_toml>: <artifacts_dir>/wokwi.toml
+<feedback_dir>: <original_pwd>/feedback/<device>, you will need to create this
+<feedback_file>: <feedback_dir>/prompt2b.md
 
-assets/wokwi.toml 
+## To complete this skill
 
-to create wokwi.toml as requested and save in current working directory at this location:
+use from this skill:  assets/wokwi.toml 
 
-artifacts/prompt4/wokwi.toml
 
 

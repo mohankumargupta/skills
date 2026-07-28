@@ -1,27 +1,28 @@
 ---
 name: wokwi-diagramjson
-description:  User describes desired wokwi diagram circuit in natural language.
-              Trigger phrases
-              'Create wokwi diagram for device <device>'
+description: Create Wokwi diagram for device <device>
 ---
 
-# Wokwi Diagram Generator for ESP32-C3
+## Context variables
+<original_pwd>: run pwd, this is <original_pwd>
+<artifacts_dir>: directory is <original_pwd>/artifacts/<device>/prompt2b, you will need to create this.
+<diagram_json>: <artifacts_dir>/diagram.json
+<feedback_dir>: <original_pwd>/feedback/<device>, you will need to create this
+<feedback_file>: <feedback_dir>/prompt2b.md
 
 ## Description
 
-Generate accurate `diagram.json` files for Wokwi circuit simulations. 
-The microcontroller is **always** `board-esp32-c3-devkitm-1`. 
-the <device> is not in the builtin parts list but there is a custom chip for 
-it that has been created previously, so add it like any other custom chip.
+This skill has: assets/diagram.json, copy it to <artifacts_dir>/diagram.json 
+
+Build on it, don't remove anything from it. It has correct microcontroller and custom chip,
+as well as serial connections.
 
 ## Input
-`artifacts/prompt2a/qa_test/tests/test.rs`: read this to help set defaults for wokwi custom chip attributes 
-`artifacts/prompt1/<device>.chip.json`: read this file to set attributes defaults. Must 
-explicitly set all attributes to values from test.rs file that make sense.
+
+
 
 ## Output
 
-`artifacts/prompt3/diagram.json`: create the directory if it doesn't exist
 
 ## References
 
@@ -45,11 +46,11 @@ Under references folder under this skill.
 
 ## Workflow
 
-### Step 1: Parse the Request
-Identify all components the user wants to connect to the ESP32-C3. 
+### Step 1: Wokwi custom chip needs to connected to microcontroller  
 
-### Step 2: Select Pins
-- Reference `esp32c3.md` for available GPIO pins.
+Wokwi custom chip needs pin names. Where to get from?
+
+Select Pins to connect microcontroller to wokwi custom chip.
 - Prefer pins that are not strapping pins for general I/O.
 - For I2C: use IO4 (SDA) and IO5 (SCL) or IO6 (SCL) and IO7 (SDA) — any GPIO works for I2C on ESP32-C3.
 - For SPI: use IO6 (SCK), IO7 (MOSI), IO2 (MISO), IO10 (CS) for hardware SPI, or any GPIO for software SPI.
