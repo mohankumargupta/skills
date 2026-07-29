@@ -6,23 +6,23 @@ description: Create Wokwi diagram for device <device>
 ## Context variables
 <original_pwd>: run pwd, this is <original_pwd>
 <artifacts_dir>: directory is <original_pwd>/artifacts/<device>/prompt2b, you will need to create this.
+<test_spec>: <original_pwd>/artifacts/<device>/prompt2a/test_spec_<device>.md
 <diagram_json>: <artifacts_dir>/diagram.json
 <feedback_dir>: <original_pwd>/feedback/<device>, you will need to create this
 <feedback_file>: <feedback_dir>/prompt2b.md
 
 ## Description
 
-This skill has: assets/diagram.json, copy it to <artifacts_dir>/diagram.json 
+This skill has: assets/diagram.json, copy it to <diagram_json>
 
 Build on it, don't remove anything from it. It has correct microcontroller and custom chip,
 as well as serial connections.
 
 ## Input
-
-
+<test_spec>: canonical test spec, single source of truth.
 
 ## Output
-
+<diagram_json>: wokwi diagram.json
 
 ## References
 
@@ -35,14 +35,8 @@ Under references folder under this skill.
 
 ## Rules
 
--  **Microcontroller is fixed**: Always use `"type": "board-esp32-c3-devkitm-1"` with `"id": "esp"` (or user-specified ID). Never substitute other ESP32 variants.
--  **Part IDs are unique**: Use descriptive IDs like `led1`, `r1`, `btn1`, `us1`, `servo1`, `oled1`. Never duplicate IDs.
 -  **Wire colors**: Use standard colors: `red` for VCC, `black` for GND, `green` for data/signal, `blue` for secondary signals, `orange` for control.
--  **Coordinates**: Place the ESP32-C3 at `(0, 0)` as the anchor. Place other parts to the right (`left: 150+`) or below (`top: 100+`) with ~50-100px spacing to avoid overlap. Use a grid layout.
 -  **Connections format**:  Use empty `[]` for wire routing connections. the first two entries MUST
-                            be [ "esp:TX", "$serialMonitor:RX", "", [] ], and     [ "esp:RX", "$serialMonitor:TX", "", [] ],
-
-
 
 ## Workflow
 
