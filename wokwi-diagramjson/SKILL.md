@@ -1,15 +1,16 @@
 ---
 name: wokwi-diagramjson
-description: Create Wokwi diagram for device <device>
+description: Create wokwi diagram diagram.json from canonical test specification for device <device>
 ---
 
 ## Context variables
 <original_pwd>: run pwd, this is <original_pwd>
-<artifacts_dir>: directory is <original_pwd>/artifacts/<device>/prompt2b, you will need to create this.
+<artifacts_dir>: directory is <original_pwd>/artifacts/<device>/prompt2c, you will need to create this.
 <test_spec>: <original_pwd>/artifacts/<device>/prompt2a/test_spec_<device>.md
+<chip_json>: <original_pwd>/artifacts/<device>/prompt2b/<device>.chip.json
 <diagram_json>: <artifacts_dir>/diagram.json
 <feedback_dir>: <original_pwd>/feedback/<device>, you will need to create this
-<feedback_file>: <feedback_dir>/prompt2b.md
+<feedback_file>: <feedback_dir>/prompt2c.md
 
 ## Description
 
@@ -22,7 +23,19 @@ as well as serial connections.
 <test_spec>: canonical test spec, single source of truth.
 
 ## Output
-<diagram_json>: wokwi diagram.json
+<diagram_json>: wokwi diagram.json. 
+
+## Where source of truth comes from
+
+| Information   | Source    |
+| ------------- | --------- |
+| protocol      | test_spec |
+| address       | test_spec |
+| chip pins     | chip_json |
+| attrs         | chip_json |
+| MCU           | template  |
+| serial wiring | template  |
+
 
 ## References
 
@@ -40,9 +53,9 @@ Under references folder under this skill.
 
 ## Workflow
 
-### Step 1: Wokwi custom chip needs to connected to microcontroller  
+### Wokwi custom chip needs to connected to microcontroller  
 
-Wokwi custom chip needs pin names. Where to get from?
+Wokwi custom chip pin names can come from <chip_json>
 
 Select Pins to connect microcontroller to wokwi custom chip.
 - Prefer pins that are not strapping pins for general I/O.
@@ -50,25 +63,22 @@ Select Pins to connect microcontroller to wokwi custom chip.
 - For SPI: use IO6 (SCK), IO7 (MOSI), IO2 (MISO), IO10 (CS) for hardware SPI, or any GPIO for software SPI.
 - For UART: use the default TX (GPIO21) and RX (GPIO20) pins.
 
-### Step 3: Build the Parts Array
-For each component, create a part object with:
-- `id`: unique descriptive ID
-- `type`: for custom chip, this is important
-- `left`, `top`: pixel coordinates (anchor ESP32-C3 at 0,0)
-- `attrs`: part-specific attributes (value, color, i2cAddress, etc.)
-- `rotate`: only if needed (90, 180, 270)
+### Add attrs atributes to existing wokwi custom chip 
 
-custom chip type should start with: chip
+add attrs from existing chip.
 for attrs, need to read both <device>.chip.json for attributes
-and test.rs for values that should be set.
 
-### Step 4: Build the Connections Array
-Connect each component to the ESP32-C3
+### Build the Connections Array
+Connect the ESP32-C3 microcontroller to wokwi custom chip.
 
-### Step 5: Output the JSON
-Produce a complete, valid `diagram.json` object. 
+### Output the JSON
+Produce a complete, valid <diagram_json> object. 
 
-### Step 6: Validation
-run `wokwi-cli lint` to validate the diagram.
+### Validation
 
+run 
 
+```sh
+cd <artifacts_dir>
+wokwi-cli lint
+```
