@@ -1,18 +1,19 @@
 ---
 name: test-esphomeyaml
-description: trigger when user asks - create rust test file called test.rs for esphome yaml for device <device>
+description: Create a std rust file test.rs as part of test harness for testing device <device>
 ---
 
 # Context variables
 <original_pwd>: run pwd, this is <original_pwd>
-<narrator_contract>: `<original_pwd>/artifacts/<device>/prompt2a`
-<artifacts_dir>: `<original_pwd>/artifacts/<device>/prompt2b`, needs to be created
+<artifacts_dir>: <original_pwd>/artifacts/<device>/prompt2e, needs to be created
+<spec>: <original_pwd>/artifacts/<device>/prompt2a/test_spec_<device>.md
+<esphome_yaml>: <original_pwd>/artifacts/<device>/prompt2d/<device>.yaml
 <feedback_dir>: <original_pwd>/feedback/<device>, needs to be created
-<feedback_file>: <feedback_dir>/prompt2b.md
+<feedback_file>: <feedback_dir>/prompt2e.md
 
 # Description 
 
-Given a narrator contract, we need to create a rust test script that tests assertions of a wokwi 
+Given a Canonical Test Specification, we need to create a rust test script that tests assertions of a wokwi 
 custom chip running inside VSCode simulator.
 
 A std rust test test.rs run on the host machine during Wokwi simulation time.
@@ -20,22 +21,24 @@ The program reads from the tcp stream created by wokwi.toml rfc2217 tcp serial p
 The rust test program runs test assertions against the stream coming to verify correct behaviour
 of the wokwi custom chip. 
 
+the serial output is coming from <esphome_yaml>, so make sure it matches 
+expected results and the order in which serial output will stream in.
+
 ## Input
 
-`<narrator_contract>`: narrator contract that test.rs will need to conform to.
+`<spec>`: Canonical Test Specification, will need to fully comply with this when writing test.rs
 
-## Ouput
-
-Files are relative to current working directory
+## Output
 
 `<artifacts_dir>/qa_test/tests/test.rs`: rust std test file that contains tests
 
 # Instructions
 
 You are going to create test using the information 
-in `<narrator_contract>` and with the example called 
-`assets/_test_example.rs` in this skill as a guide. Also if you need to know definition of assert_serial,
-it is in `assets/qa_test/tests/assert_serial.rs` of this skill.
+in `<spec>` and with the example called 
+`assets/_test_example.rs` in this skill as a guide. Also if you need to know definition of 
+assert_serial,it is in 
+`assets/qa_test/tests/assert_serial.rs` of this skill.
   
 ## Step 1: create rust project
 
