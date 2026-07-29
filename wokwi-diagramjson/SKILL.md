@@ -57,11 +57,6 @@ Under references folder under this skill.
 
 Wokwi custom chip pin names can come from <chip_json>
 
-Select Pins to connect microcontroller to wokwi custom chip.
-- Prefer pins that are not strapping pins for general I/O.
-- For I2C: use IO4 (SDA) and IO5 (SCL) or IO6 (SCL) and IO7 (SDA) — any GPIO works for I2C on ESP32-C3.
-- For SPI: use IO6 (SCK), IO7 (MOSI), IO2 (MISO), IO10 (CS) for hardware SPI, or any GPIO for software SPI.
-- For UART: use the default TX (GPIO21) and RX (GPIO20) pins.
 
 ### Add attrs atributes to existing wokwi custom chip 
 
@@ -82,3 +77,8 @@ run
 cd <artifacts_dir>
 wokwi-cli lint
 ```
+### Feedback
+ 
+Before finishing, write a doc called `<feedback_file>` 
+for comments about this skill 
+including obstacles and improvements.
