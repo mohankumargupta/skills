@@ -28,7 +28,7 @@ run from <artifacts_dir>:
 
 esphome compile <device>.yaml
 
-## create wokwi.toml in <artifacts_dir>
+## create wokwi.toml
 
 Given <artifacts_dir>/diagram.json, 
 and the previous command,
