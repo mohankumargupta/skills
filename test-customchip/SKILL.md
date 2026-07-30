@@ -1,4 +1,3 @@
-
 ---
 name: test-customchip
 description: Assemble wokwi test harness for device <device>
