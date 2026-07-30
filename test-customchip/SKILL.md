@@ -1,7 +1,7 @@
-````markdown
+
 ---
-name: test_customchip
-description: Generate test harness for wokwi custom chip of device <device>
+name: test-customchip
+description: Assemble wokwi test harness for device <device>
 ---
 
 # Context Variables
@@ -23,16 +23,20 @@ description: Generate test harness for wokwi custom chip of device <device>
 <esphome_yaml> -> <artifacts_dir>
 <rust_test_program> -> <artifacts_dir>
 
-## create wokwi.toml in <artifacts_dir>
-
-Given <artifacts_dir>/diagram.json, create <artifacts_dir>/wokwi.toml so 
-that the wokwi custom chip is found and esphome firmware is found when built.
-
 ## compile esphome firmware
 
-run from <artifacts_dir>
+run from <artifacts_dir>:
 
 esphome compile <device>.yaml
+
+## create wokwi.toml in <artifacts_dir>
+
+Given <artifacts_dir>/diagram.json, 
+and the previous command,
+
+create <artifacts_dir>/wokwi.toml so 
+that the wokwi custom chip matches what is in <artifacts_dir>/diagram.json
+and firmware points to right location based on previous esphome command
 
 ### Feedback
  
