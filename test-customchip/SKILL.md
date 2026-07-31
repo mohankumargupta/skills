@@ -7,7 +7,7 @@ description: Assemble wokwi test harness for device <device>
 
 <original_pwd>: run pwd, this is <original_pwd>
 <artifacts_dir>: directory is <original_pwd>/artifacts/<device>/prompt2g, you will need to create this.
-<wokwi_custom_chip>: <original_pwd>/artifacts/<device>/prompt1
+<wokwi_custom_chip>: <original_pwd>/artifacts/<device>/prompt1/dist/chip.wasm
 <chip_json>: <original_pwd>/artifacts/<device>/prompt2b/<device>.chip.json
 <diagram_json>: <original_pwd>/artifacts/<device>/prompt2c/diagram.json
 <esphome_yaml>: <original_pwd>/artifacts/<device>/prompt2d/<device>.yaml
@@ -24,6 +24,7 @@ description: Assemble wokwi test harness for device <device>
 <rust_test_program> -> <artifacts_dir>
 <firmware_dir>/firmware.bin -> <artifacts_dir>
 <firmware_dir>/firmware.elf -> <artifacts_dir>
+<wokwi_custom_chip> -> <artifacts_dir>
 
 ## create wokwi.toml
 copy assets/wokwi.toml from this skill to <artifacts_dir> and 
