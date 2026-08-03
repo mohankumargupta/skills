@@ -5,12 +5,13 @@ description: Create spec markdown from datasheet for <device>
 
 # Context variables
 
-<original_pwd>:  run pwd, this is <original_pwd>
-<artifacts_dir>: this directory is <original_pwd>/artifacts/<device>/prompt0, will need to be created
-<datasheet_dir>: <artifacts_dir>/datasheet, need to create directory
-<final_spec_file>: <artifacts_dir>/<device>.md
-<feedback_dir>:  <original_pwd>/feedback/<device>, need to create directory
-<feedback_file>: <feedback_dir>/prompt0.md
+<original_pwd>:    run pwd, this is <original_pwd>
+<outputs_dir>:     <original_pwd>/artifacts/<device>/outputs, will need to create
+<artifacts_dir>:   this directory is <original_pwd>/artifacts/<device>/prompt0a, will need to be created
+<datasheet_dir>:   <artifacts_dir>/datasheet, need to create directory
+<final_spec_file>: <outputs_dir>/spec_<device>.md
+<feedback_dir>:    <original_pwd>/feedback/<device>, need to create directory
+<feedback_file>:   <feedback_dir>/prompt0a.md
 
 ## Step 1 Download esphome.io components
 
@@ -18,14 +19,10 @@ run `components.sh` from this skill
 
 ## Step 2 Find esphome.io docs markdown 
 
-
-
 Then run this from current working directory:
 ```bash
 rg -i <device> components
 ```
-
-
 
 This will give you a path relative to current directory to esphome docs for <device>.
 
@@ -44,11 +41,15 @@ because it is the markdown doc we need
 rg -i <name_of_component> components 
 ```
 
-create a file called <artifacts_dir>/esphome_component.txt with the name of esphome component.
+create a file called <outputs_dir>/esphome_component.txt with the name of esphome component.
+also copy: the found component mdx to <outputs_dir>, 
+and copy the esphome component source code in eg esphome/components/<name_of_components> 
+to <outputs_dir> 
+
 
 ## Step 2: Download datasheet
 
-1. Read the device documentation file (eg. `components/sensor/<device>.mdx`)
+1. Read the device documentation file (eg. `components/sensor/<name_of_component>.mdx`)
 2. Find a datasheet URL for <device>.
 3. once you found a datasheet url there is a script inside this skill called `analog.sh`
      usage: analog.sh <datasheet_url>

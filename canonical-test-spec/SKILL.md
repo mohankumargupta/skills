@@ -5,13 +5,13 @@ description: Produce an internal Canonical Test Specification from a hardware ch
 
 # Context Variables
 
-<original_pwd>: run pwd, this is <original_pwd>
-<artifacts_dir>: directory is `<original_pwd>/artifacts/<device>/prompt2a`, you will need to create this.
-<source_material_dir>: <original_pwd>/artifacts/<device>/prompt0b
-<output_spec_file>: <artifacts_dir>/test_spec_<device>.md
-<feedback_dir>: <original_pwd>/feedback/<device>, you will need to create this
-<feedback_file>: <feedback_dir>/prompt2a.md
-
+<original_pwd>:        run pwd, this is <original_pwd>
+<outputs_dir>:         <original_pwd>/artifacts/<device>/outputs, will need to create
+<artifacts_dir>:       directory is `<original_pwd>/artifacts/<device>/prompt0b`, you will need to create this.
+<source_material_dir>: <original_pwd>/artifacts/<device>/prompt0a
+<output_spec_file>:    <outputs_dir>/test_spec_<device>.md
+<feedback_dir>:        <original_pwd>/feedback/<device>, you will need to create this
+<feedback_file>:       <feedback_dir>/prompt0b.md
 
 # Skill: Canonical Test Specification
 

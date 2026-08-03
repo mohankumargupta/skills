@@ -21,15 +21,6 @@
 - **Bit order:** MSB first
 - **CS active:** low
 
-## Physical pins names and functions
-
-| Pin Number | Pin Name | Description
-|------------|----------|------------
-
-## Bus and addressing Rules
-
-Default Address Configuration if applicable, clock speeds
-
 ## Register Map
 
 | Address | Name | R/W | Reset | Description |
@@ -45,7 +36,7 @@ Default Address Configuration if applicable, clock speeds
 | 7:4  | FIELD_A | |
 | 3:0  | FIELD_B | |
 
-## Initialization Sequence & State Machine for emulating chip, timings
+## Initialization Sequence
 
 1. <step>
 2. <step>
