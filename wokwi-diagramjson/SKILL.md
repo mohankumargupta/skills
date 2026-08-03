@@ -5,12 +5,12 @@ description: Create wokwi diagram diagram.json from canonical test specification
 
 ## Context variables
 <original_pwd>: run pwd, this is <original_pwd>
-<artifacts_dir>: directory is <original_pwd>/artifacts/<device>/prompt2c, you will need to create this.
-<test_spec>: <original_pwd>/artifacts/<device>/prompt2a/test_spec_<device>.md
-<chip_json>: <original_pwd>/artifacts/<device>/prompt2b/<device>.chip.json
-<diagram_json>: <artifacts_dir>/diagram.json
+<outputs_dir>: <original_pwd>/artifacts/<device>/outputs
+<test_spec>: <original_pwd>/artifacts/<device>/outputs/test_spec_<device>.md
+<chip_json>: <original_pwd>/artifacts/<device>/outputs/chip.json
+<diagram_json>: <outputs_dir>/diagram.json
 <feedback_dir>: <original_pwd>/feedback/<device>, you will need to create this
-<feedback_file>: <feedback_dir>/prompt2c.md
+<feedback_file>: <feedback_dir>/prompt2b.md
 
 ## Description
 
@@ -74,7 +74,7 @@ Produce a complete, valid <diagram_json> object.
 run 
 
 ```sh
-cd <artifacts_dir>
+cd <outputs_dir>
 wokwi-cli lint
 ```
 ### Feedback
