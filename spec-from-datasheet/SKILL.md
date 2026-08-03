@@ -44,7 +44,7 @@ rg -i <name_of_component> components
 create a file called <outputs_dir>/esphome_component.txt with the name of esphome component.
 also copy: the found component mdx to <outputs_dir>, 
 and copy the esphome component source code in eg esphome/components/<name_of_components> 
-to <outputs_dir> 
+to <outputs_dir>/<name_of_component> 
 
 
 ## Step 2: Download datasheet
