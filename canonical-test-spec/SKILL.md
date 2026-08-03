@@ -7,8 +7,6 @@ description: Produce an internal Canonical Test Specification from a hardware ch
 
 <original_pwd>:        run pwd, this is <original_pwd>
 <outputs_dir>:         <original_pwd>/artifacts/<device>/outputs, will need to create
-<artifacts_dir>:       directory is `<original_pwd>/artifacts/<device>/prompt0b`, you will need to create this.
-<source_material_dir>: <original_pwd>/artifacts/<device>/prompt0a
 <output_spec_file>:    <outputs_dir>/test_spec_<device>.md
 <feedback_dir>:        <original_pwd>/feedback/<device>, you will need to create this
 <feedback_file>:       <feedback_dir>/prompt0b.md
@@ -38,16 +36,16 @@ It is the single source of truth from which those artifacts are generated.
 
 # Inputs
 
-<source_material_dir>: This contains esphome_component.txt with the name of the esphome 
+<outputs_dir>: This contains esphome_component.txt with the name of the esphome 
 component <name_of_esphome_component> for <device> which is not necessarily the same as <device>, it also contains
 esphome docs markdown <name_of_esphome_component>.mdx and the esphome component source code
-in directory <name_of_esphome_component>
+in directory <name_of_esphome_component> and spec_<device>.md 
 
 ---
 
 # Output
 
-Produce one Canonical Test Specification <output_spec_file>
+Produce one Canonical Test Specification <output_spec_file> based on the inputs.
 
 This specification is an intermediate artifact intended to be consumed by other
 skills.
