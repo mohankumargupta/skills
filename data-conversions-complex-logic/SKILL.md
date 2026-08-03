@@ -6,10 +6,10 @@ description: Create zig 0.16 std project that has data conversion functions and 
 # Context Variables
 
 <original_pwd>: run pwd, this is <original_pwd>
-<artifacts_dir>: directory is <original_pwd>/artifacts/<device>/prompt0b, you will need to create this.
-<spec>: <original_pwd>/artifacts/<device>/prompt0/<device>.md
+<artifacts_dir>: directory is <original_pwd>/artifacts/<device>/prompt0c, you will need to create this.
+<spec>: <original_pwd>/artifacts/<device>/outputs/spec_<device>.md, Canonical Test Specification
 <feedback_dir>: <original_pwd>/feedback/<device>, you will need to create this
-<feedback_file>: <feedback_dir>/prompt0b.md
+<feedback_file>: <feedback_dir>/prompt0c.md
 
 # create zig 0.16 std project
 
