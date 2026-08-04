@@ -12,6 +12,43 @@ description: create test harness involving esphome yaml and rust std test projec
 <feedback_dir>:        <original_pwd>/feedback/<device>, you will need to create this
 <feedback_file>:       <feedback_dir>/prompt2c.md
 
+# Execution Constraints (Mandatory)
+
+You are implementing a deterministic build pipeline, not performing general
+research.
+
+## Allowed Inputs
+
+You may only read the following:
+
+- <spec>
+- <outputs_dir>/esphome_component.txt
+- <outputs_dir>/<name_of_esphome_component>.mdx
+- files under this skill's assets/
+- files under this skill's references/
+- files that you generate during this skill
+
+## Forbidden
+
+Do NOT search or inspect:
+
+- .venv/
+- site-packages/
+- __pycache__/
+- node_modules/
+- target/
+- Cargo registry
+- Python packages
+- Rust crates
+- the internet
+- unrelated directories
+
+If a required file is not listed under Allowed Inputs, assume it does not exist
+and continue using the available inputs.
+
+Searching outside the Allowed Inputs is considered a failure of this skill.
+
+
 # STEP 1: Create esphome yaml
 
 ## Description
@@ -146,6 +183,12 @@ If there are errors, fix them and recompile.
 If everything compiles, then copy:
 
 <artifacts_dir>/qa_test -> <outputs_dir>
+
+## Step 4 copy files
+
+from this skill, copy assets/wokwi.toml to <outputs_dir>
+
+copy <artifacts_dir>/qa_test to <outputs_dir>
 
 
 # Finishing up
