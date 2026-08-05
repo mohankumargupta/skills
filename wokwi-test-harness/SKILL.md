@@ -71,9 +71,16 @@ so both parties can agree on what is sent and expected to be received.
 
 `<artifacts_dir>/<device>.yaml`: generated esphome yaml file
 
-# copy files
+## copy files
 
 copy assets/template.yaml in this skill to <artifacts_dir>/<device>.yaml
+
+## pin numbers
+
+read assets/esp32c3.yaml from this skill
+
+use the pin numbers suggested here for buses and other pins.
+
 
 ## Mandatory Section in yaml file
 Add on_boot section to ```esphome``` section of the esphome yaml file. 

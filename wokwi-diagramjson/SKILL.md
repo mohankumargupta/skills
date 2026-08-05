@@ -25,6 +25,13 @@ as well as serial connections.
 ## Output
 <diagram_json>: wokwi diagram.json. 
 
+## pin numbers
+
+read assets/esp32c3.yaml from this skill
+
+use the pin numbers suggested here for buses and other pins.
+
+
 ## Where source of truth comes from
 
 | Information   | Source    |

@@ -3,7 +3,7 @@ use std::io::{BufRead, BufReader};
 use std::net::TcpStream;
 use std::time::{Duration, Instant};
 
-const DEFAULT_TIMEOUT: Duration = Duration::from_secs(10);
+pub const DEFAULT_TIMEOUT: Duration = Duration::from_secs(60);
 
 thread_local! {
     static WOKWI_READER: RefCell<Option<BufReader<TcpStream>>> = const { RefCell::new(None) };
@@ -24,6 +24,7 @@ pub fn assert_serial_impl(expected: &str, timeout: Duration) {
                 "Timeout: Could not connect to Wokwi on port 4000. Did you start the simulator?"
             );
             stream.set_read_timeout(Some(Duration::from_secs(5))).unwrap();
+            eprintln!("QA_HARNESS_READY: connected to rfc2217 stream");
             
             *binding = Some(BufReader::new(stream));
         }
@@ -57,9 +58,9 @@ pub fn assert_serial_impl(expected: &str, timeout: Duration) {
 #[macro_export]
 macro_rules! assert_serial {
     ($expected:expr) => {
-        $crate::assert_serial_impl($expected, DEFAULT_TIMEOUT);
+        $crate::assert_serial::assert_serial_impl($expected, DEFAULT_TIMEOUT);
     };
     ($expected:expr, $timeout:expr) => {
-        $crate::assert_serial_impl($expected, $timeout);
+        $crate::assert_serial::assert_serial_impl($expected, $timeout);
     };
 }

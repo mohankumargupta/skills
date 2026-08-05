@@ -1,0 +1,99 @@
+# Canonical Board Pin Profile: ESP32-C3-DevKitM-1
+#
+# This is NOT part of any device's Canonical Test Specification.
+# It is a separate, board-level artifact that every downstream generator
+# (diagram.json generator, ESPHome yaml generator, host-integration-test
+# generator, docs generator) MUST read pin assignments from instead of
+# choosing pins independently.
+#
+# Rationale: two generators independently "guessing" a free pin for the
+# same logical bus is how wiring/firmware drift happens.
+# This file exists so that class of bug is structurally impossible.
+
+board:
+  wokwi_part_type: board-esp32-c3-devkitm-1
+  mcu: esp32c3
+
+# Ground truth pin list, taken directly from `wokwi-cli lint` against this
+# part type. Do not hand-edit without re-validating against lint output —
+# pin names on Wokwi board parts use disambiguating suffixes (GND.1..GND.10,
+# 3V3.1, 3V3.2, 5V.1, 5V.2) that are easy to get wrong (e.g. "GND", "3V3",
+# "IO4" are all invalid — must be "GND.1", "3V3.1", "4").
+valid_pins:
+  gpio: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 18, 19]
+  power_ground:
+    gnd: [GND.1, GND.2, GND.3, GND.4, GND.5, GND.6, GND.7, GND.8, GND.9, GND.10]
+    v3v3: [3V3.1, 3V3.2]
+    v5: [5V.1, 5V.2]
+  other: [RST, RX, TX]
+
+# Canonical instance to use whenever a device needs "a ground pin" /
+# "a 3V3 pin" with no other constraint. Prevents each generator from
+# picking a different numbered instance.
+default_power_ground:
+  vcc: 3V3.1
+  gnd: GND.1
+
+# Pins reserved for the platform itself — never assign these to a
+# peripheral bus.
+reserved:
+  RX: "Hardware UART0, used by the ESPHome logger (logger: hardware_uart: UART0)"
+  TX: "Hardware UART0, used by the ESPHome logger"
+  "2": "Strapping pin (boot mode select) — avoid unless explicitly required"
+  "8": "Strapping pin (boot mode select) — avoid unless explicitly required"
+  "9": "Strapping pin (boot mode select) — avoid unless explicitly required"
+  "18": "Native USB D- — avoid if USB-CDC logging may ever be enabled"
+  "19": "Native USB D+ — avoid if USB-CDC logging may ever be enabled"
+
+# Bus defaults. "Primary" buses are guaranteed pairwise non-overlapping,
+# so a device needing I2C + a device needing SPI + a device needing a
+# secondary UART can all be present in the same generated firmware
+# without collision. "Secondary" buses reuse strapping pins (documented
+# below) because this board only exposes 13 GPIOs total — there is not
+# enough clean pin budget for two fully independent instances of every
+# bus type. Prefer primary buses; only reach for secondary if a test
+# genuinely needs two concurrent instances of the same bus type.
+
+buses:
+  primary:
+    i2c1:
+      sda: "4"
+      scl: "5"
+      notes: "Default bus for any single-I2C-device canonical test."
+    spi1:
+      sck: "6"
+      mosi: "7"
+      miso: "10"
+      cs: "3"
+      notes: "Default bus for any single-SPI-device canonical test."
+    uart1:
+      tx: "0"
+      rx: "1"
+      notes: "Secondary/software UART for peripherals. UART0 (RX/TX pins) is reserved for the logger."
+
+  secondary:
+    i2c2:
+      sda: "8"
+      scl: "9"
+      notes: >
+        Reuses strapping pins. Matches the ESP32-C3 Arduino-core default
+        Wire() pins, so it is a recognizable choice, but avoid combining
+        with anything else that also needs GPIO8/9. Fine for simulation;
+        would need re-evaluation for a physical board bring-up doc.
+    spi2:
+      sck: "2"
+      mosi: "18"
+      miso: "19"
+      cs: null
+      notes: >
+        Reuses a strapping pin (2) and both native-USB pins (18, 19).
+        Only use this if spi1 is already occupied by a different device
+        in the same test and a genuinely independent second SPI bus is
+        required. No spare GPIO remains for CS — caller must supply one
+        from whatever primary-bus pins are unused in that specific test,
+        or use a device that doesn't need CS.
+    uart2:
+      tx: "8"
+      rx: "9"
+      notes: "Reuses strapping pins; same caveat as i2c2. Do not combine uart2 and i2c2 in the same test."
+
