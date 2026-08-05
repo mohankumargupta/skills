@@ -6,35 +6,53 @@ description: Create a Wokwi custom chip for device <device> in zig 0.16
 # Context variables 
 
 <original_pwd>:  run pwd, this will be referred to as <original_pwd>
-<artifacts_dir>: <original_pwd>/artifacts/prompt1, create this directory
+<artifacts_dir>: <original_pwd>/artifacts/<device>/prompt2d, create this directory
+<outputs_dir>:   <original_pwd>/artifacts/<device>/outputs
+<spec>:          <outputs_dir>/spec_<device>
+<test_spec>:     <outputs_dir>/test_spec_<device>
 <feedback_dir>:  <original_pwd>/feedback/<device>
-<feedback_file>: <feedback_dir>/prompt1.md
+<feedback_file>: <feedback_dir>/prompt2d.md
 
-# Input
+# Execution Constraints (Mandatory)
 
-`artifacts/<device>/prompt0/<device>.md`: Spec file for <device>
+You are implementing a deterministic build pipeline, not performing general
+research.
 
+## Forbidden
 
-# Output
+Do NOT search or inspect:
 
-`<artifacts_dir>/chip.zig`: wokwi custom chip implementation in Zig 0.16
-`<artifacts_dir>/<device>.chip.json` : wokwi custom chip controls
+- .venv/
+- site-packages/
+- __pycache__/
+- node_modules/
+- target/
+- Cargo registry
+- Python packages
+- Rust crates
+- the internet
+- unrelated directories
+
+If a required file is not listed under Allowed Inputs, assume it does not exist
+and continue using the available inputs.
+
+Searching outside the Allowed Inputs is considered a failure of this skill.
+
+## description
+
+creating wokwi custom chip for <device> 
+
+just implement the essentials so that <test_spec> can be implemented.
+
 
 ## Step 1: Extract hardware model
 
-Convert the spec into:
-
-internal state
-registers
-transport handlers
-pin model
-interrupt model
-timing model
+read <spec> and <test_spec> in full.
 
 ## Step 2: Study MCP23017 Example
 
 Inspect:  ```assets/wokwi-mcp23017/chip.zig``` and 
-```assets/wokwi-mcp23017/wokwi_api.zig``` in this skill
+```assets/wokwi_api.zig``` in this skill
 
 The wokwi api is also documented in ```references``` folder in this skill.
 Note that the wokwi api is initially written in C, and the references are written
@@ -49,10 +67,9 @@ Write zig 0.16 code for the custom chip and save as `<artifacts_dir>/chip.zig`
 
 # Validation
 
-To validate chip.zig and <device>.chip.json copy from this skill the following files:
- `assets/wokwi-mcp23017/build.zig`
- `assets/wokwi-mcp23017/wokwi_api.zig` 
- `assets/chip.schema.json`
+To validate chip.zig copy from this skill the following files:
+ `assets/build.zig`
+ `assets/wokwi_api.zig` 
 
 Copy to `<artifacts_dir>` 
 
@@ -63,12 +80,11 @@ First, run from `<artifacts_dir>`:
 Then run from `<artifacts_dir>`:
 `zig build`. 
 
-If successful, it should produce a dist/chip.wasm
-
-now validate `<device>.chip.json` by running 
-
-```jsonschema-cli validate chip.schema.json -i <device>.chip.json```
-
+## copy files
+copy
+<artifacts_dir>/{build.zig, chip.zig, wokwi-api.zig}
+to
+<outputs_dir>
 
 # Before finishing
 
