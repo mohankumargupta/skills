@@ -120,7 +120,14 @@ First, run from `<artifacts_dir>`:
 `zig fmt chip.zig`
 
 Then run from `<artifacts_dir>`:
-`zig build`. 
+
+`zig build`
+
+`zig build test`
+
+`zig build test` must pass with zero failures before proceeding. A green
+`zig build` alone (compiles, but never exercised) is not sufficient
+evidence of correctness and must not be treated as such.
 
 ## copy files
 copy
