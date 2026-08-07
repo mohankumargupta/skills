@@ -19,6 +19,8 @@ This skill has: assets/diagram.json, copy it to <diagram_json>
 Build on it, don't remove anything from it. It has correct microcontroller and custom chip,
 as well as serial connections.
 
+
+
 ## Input
 <test_spec>: canonical test spec, single source of truth.
 
