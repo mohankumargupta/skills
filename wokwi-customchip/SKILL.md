@@ -131,7 +131,7 @@ evidence of correctness and must not be treated as such.
 
 ## copy files
 copy
-<artifacts_dir>/{build.zig, chip.zig, wokwi-api.zig}
+<artifacts_dir>/{build.zig, chip.zig, chip.wasm, wokwi-api.zig}
 to
 <outputs_dir>
 
