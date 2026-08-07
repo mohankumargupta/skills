@@ -175,7 +175,7 @@ assert_serial,it is in
 run from <artifacts_dir>
 
 ```bash
-cargo new --lib qa_test
+cargo new --vcs none --lib qa_test
 ```
 
 ## Step 2: Copy files from this skill
