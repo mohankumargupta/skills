@@ -87,6 +87,18 @@ Add on_boot section to ```esphome``` section of the esphome yaml file.
 If possible, sensor values are read and printed here, according to <spec>,
 prefer this to reading periodic values. 
 
+## Numeric ground truth for assertions
+
+The exact numeric value asserted in `assert_serial!` for any observable
+(e.g. "Temperature = 21.0 C") must be copied from <spec>'s Canonical
+Presentation/observable default — never recomputed or approximated by the
+test author. If the value that actually streams from the simulator differs
+from the spec's default, this is a signal of a chip.zig encoding bug (see
+wokwi-customchip Step 0/Step 4), not a reason to adjust the assertion to
+match observed output. Do not "fix" a failing test by changing the
+expected value to whatever the simulator happened to print.
+
+
 ## Reference 
 this is located in this skill.
 `references/core-configuration.md`: esphome core configuration, particularly on_boot

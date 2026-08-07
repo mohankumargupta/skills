@@ -143,3 +143,5 @@ Capture problems encountered,
 ambiguities in the instructions, 
 assumptions you had to make, 
 and concrete suggestions for improving the skill.
+Explicitly note whether <conversions_src> was reused as-is, adapted, or
+unavailable (see Step 0), and why.
