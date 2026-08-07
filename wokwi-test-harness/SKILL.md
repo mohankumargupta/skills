@@ -209,6 +209,7 @@ from this skill, copy assets/wokwi.toml to <outputs_dir>
 
 copy <artifacts_dir>/qa_test to <outputs_dir>
 
+copy <artifacts_dir>/<device>.yaml to <outputs_dir>
 
 # Finishing up
 
