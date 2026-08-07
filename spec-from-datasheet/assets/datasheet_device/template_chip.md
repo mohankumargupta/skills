@@ -1,7 +1,6 @@
 # Chip Spec: <ChipName>
 
 **Manufacturer:** <Manufacturer>  
-**Datasheet:** `datasheets/<category>/<filename>`  
 **Category:** <category directory, e.g. environmental, imu, temperature>  
 **Transports:** <SPI | I²C | both | UART>
 
@@ -14,6 +13,8 @@
 ### I²C
 - **Address:** `0x??` (default) — `0x??` (alternate, if applicable)
 - **Max clock:** <e.g. 400 kHz>
+- **Endianness / Byte Order:** <Big-Endian (MSB first) | Little-Endian (LSB first)>
+- **Protocol Quirks:** <e.g. Requires Repeated Start for reads? Does the register pointer auto-increment during block reads?>
 
 ### SPI
 - **Mode:** CPOL=? CPHA=? (Mode ?)
@@ -29,6 +30,13 @@
 ## Bus and addressing Rules
 
 Default Address Configuration if applicable, clock speeds
+
+## Interrupts / Alert Pins
+
+- **Pin Type:** <Open-drain | Push-pull>
+- **Polarity:** <Active-Low | Active-High | Configurable>
+- **Latch Behavior:** <Latched until cleared | Pulses for N ms>
+- **Clear Mechanism:** <How is it cleared? e.g., "Cleared by reading register 0x00" or "Cleared by writing 1 to bit 5">
 
 ## Register Map
 
@@ -54,8 +62,19 @@ Default Address Configuration if applicable, clock speeds
 ## Data Conversion
 
 <!-- Formulas mapping raw register values to real-world units. -->
+<!-- CRITICAL: Explicitly state Data Type, Alignment, and Sign Extension -->
+
+- **Data Type:** <e.g., Two's complement, Unsigned integer, Offset binary>
+- **Alignment:** <e.g., 12-bit value left-aligned in a 16-bit register (bits 15:4)>
 
 ```
 value = raw * <scale> + <offset>
 ```
 
+### Worked Examples / Test Vectors
+<!-- CRITICAL: Extract any tables or examples from the datasheet that show specific real-world values and their corresponding raw hex/binary register values. These are required for downstream unit tests. -->
+
+| Real-world Value | Raw Register Value (Hex/Binary) | Notes |
+|------------------|---------------------------------|-------|
+|                  |                                 |       |
+```
