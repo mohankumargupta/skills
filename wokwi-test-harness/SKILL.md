@@ -87,10 +87,35 @@ Add on_boot section to ```esphome``` section of the esphome yaml file.
 If possible, sensor values are read and printed here, according to <spec>,
 prefer this to reading periodic values. 
 
+### Race condition warning (critical)
+
+`component.update` on a sensor is **asynchronous**: it starts the
+read/conversion but does not block until the value is actually published.
+A lambda placed immediately after `component.update` — even guarded by a
+fixed `delay:` — can log a `nan` value because the driver has not yet
+called `publish_state()`. 
+
+*Never** generate an on_boot block that relies on a fixed `delay:` to
+wait for a sensor read to complete. Instead:
+
+1. **An `on_value` trigger** on the sensor itself, when the canonical
+   observable in `<spec>` is naturally event-driven. `component.update`
+   should still be issued in `on_boot` to force the first read rather than
+   waiting for the sensor's normal `update_interval`, but the log line
+   moves into the sensor's `on_value:` automation instead of `on_boot`.
+
+the generated on_boot/on_value block MUST NOT
+print the observable until the driver has actually published a non-NaN
+value. A race here doesn't just produce a flaky log line — it silently
+corrupts the ground-truth value that the paired `qa_test` rust harness
+asserts against via `assert_serial!`, per the "Numeric ground truth for
+assertions" rule in this same skill.
+
+
 ## Numeric ground truth for assertions
 
 The exact numeric value asserted in `assert_serial!` for any observable
-(e.g. "Temperature = 21.0 C") must be copied from <spec>'s Canonical
+must be copied from <spec>'s Canonical
 Presentation/observable default — never recomputed or approximated by the
 test author. If the value that actually streams from the simulator differs
 from the spec's default, this is a signal of a chip.zig encoding bug (see
