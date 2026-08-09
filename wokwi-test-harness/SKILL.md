@@ -111,6 +111,31 @@ corrupts the ground-truth value that the paired `qa_test` rust harness
 asserts against via `assert_serial!`, per the "Numeric ground truth for
 assertions" rule in this same skill.
 
+### Format-string translation (critical)
+
+`<spec>`'s `presentation.<observable>.template` field (e.g.
+`"Temperature = {:.1f} C"`) uses language-neutral notation for precision
+and wording only. `ESP_LOGI`/`ESP_LOGD`/`ESP_LOGW` are C++ macros that use
+**printf-style** format specifiers exclusively — `%.1f`, not `{:.1f}`.
+
+When emitting the lambda that logs an observable, you MUST translate the
+template's precision directive into the correct printf conversion
+specifier before writing the `ESP_LOGx` call:
+
+```yaml
+# WRONG — {:.1f} is not a printf specifier; ESP_LOGI will print the
+# literal characters "{:.1f}" instead of the value, and the value
+# argument is silently dropped.
+ESP_LOGI("<tag>", "Temperature = {:.1f} C", x);
+
+# CORRECT
+ESP_LOGI("<tag>", "Temperature = %.1f C", x);
+```
+
+After generating the yaml, grep the generated file for any `{:` sequence
+inside a quoted `ESP_LOGx`/lambda string — its presence indicates this
+translation step was skipped and must be
+
 
 ## Numeric ground truth for assertions
 
@@ -213,6 +238,32 @@ Copy the following files from this skill to path relative to current working dir
 ## Step 3: Create test 
 
 Generate `<artifacts_dir>/qa_test/tests/test.rs`. Remember we want happy path, no edge cases.
+
+### Do not hardcode unverified framework log strings
+
+Any `assert_serial!` string that quotes text the *framework itself* emits
+(as opposed to text from the `<device>.yaml` on_boot/on_value lambda you
+just wrote) — for example ESPHome's I2C bus-scan line, boot banners, or
+component `dump_config` output — is NOT something to recall from training
+data or copy from a prior run's feedback file. These strings vary across
+ESPHome versions and build backends (esp-idf vs arduino), and differ even
+between two log calls that look similar (`ESP_LOGI` "Found i2c device at
+address" vs `ESP_LOGCONFIG` "Found device at address" are two distinct code
+paths in the same component tree).
+
+Before writing an assertion against framework-generated text:
+1. Prefer asserting only against text your own on_boot/on_value lambda
+   explicitly prints — that text is fully under this skill's control and
+   its exact wording is guaranteed.
+2. If a framework-emitted line is unavoidable (e.g. confirming I2C
+   discovery), mark it in a comment as "framework-generated — verify
+   against actual compile/simulator output before trusting" and prefer a
+   shorter, less version-sensitive substring (e.g. `"address 0x48"` rather
+   than the full log line) so minor wording differences across ESPHome
+   versions don't break the assertion.
+3. If actual simulator/serial output is available (e.g. from a prior run
+   in this same session), assert against that observed text, not a
+   remembered or assumed version of it.
 
 ## Step 3: Compile
 

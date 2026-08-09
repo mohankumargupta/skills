@@ -292,6 +292,28 @@ The presentation section owns
 
 Downstream generators must never invent or modify these.
 
+### Template notation is language-neutral — never copy verbatim
+
+The `template` string (e.g. `"Temperature = {:.1f} C"`) specifies the
+**wording, ordering, and numeric precision** of the presentation. It does
+**not** specify the literal format-string syntax of whatever target
+language a downstream generator happens to emit code in.
+
+`{:.1f}` is Python/Rust-style notation, chosen here only because it is a
+widely-understood way to say "one digit after the decimal point." It is
+not valid printf syntax. Downstream generators that embed this value in
+C/C++ (e.g. `ESP_LOGI`, `printf`, `sprintf`) MUST translate the precision
+directive into that language's actual conversion specifier (`%.1f`), not
+substitute the template text into the string literal unchanged. Copying
+`{:.1f}` into an `ESP_LOGI` format string compiles without error but
+silently prints the literal characters `{:.1f}` instead of the value,
+because ESP_LOGI does no substitution on text it doesn't recognize as a
+`%`-specifier.
+
+Every downstream skill that consumes `template` must state, in its own
+output, which literal format syntax it emitted so this translation step
+is auditable rather than implicit.
+
 ---
 
 # Hallucination Prevention
