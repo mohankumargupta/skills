@@ -66,24 +66,46 @@ artifacts later.
 
 verify correctness with zig build.
 
-# Downstream reuse contract
+# Step 4: Create conversions manifest
 
-The functions produced here are the single source of truth
-for register-level bit layout (alignment, byte order, sign extension) for
-this device.
+Create `<conversions_manifest>`.
 
-Any other skill that later needs to encode or decode the same register
-values MUST reuse or port these exact functions rather than re-deriving 
-the encoding independently.Re-deriving the same conversion twice, 
-in two different artifacts, with no shared reference, 
-is how alignment/shift bugs are introduced silently.
+The manifest is mandatory. It MUST be created even when the
+specification contains no conversions. In that case, state explicitly
+that no register-level conversions were identified.
 
-Produce `<conversions_manifest>` listing, for each conversion function:
+For every conversion function, record:
 
 - function name and file
-- one worked example input/output pair (e.g. `21.0 C -> 0x1500`)
-- the exact bit layout assumption it encodes (e.g. "left-aligned in bits
-  15:4, LSB nibble of byte 2 reserved for EM flag")
+- one worked example input/output pair
+  (e.g. `21.0 C -> 0x1500`)
+- the exact bit layout assumption it encodes
+  (e.g. "left-aligned in bits 15:4, LSB nibble of byte 2 reserved for EM flag")
+- the out-of-range policy for encode functions
+  (clamp/saturate, wrap, or error)
+
+The functions produced here are the single source of truth for
+register-level bit layout (alignment, byte order, and sign extension)
+for this device.
+
+Any other skill that later needs to encode or decode the same register
+values MUST reuse or port these exact functions rather than
+re-deriving the encoding independently.
+
+
+# Step 5: Verify
+
+Run:
+
+zig build
+
+Before finishing, verify that all of the following exist:
+
+- `<artifacts_dir>/build.zig`
+- `<artifacts_dir>/build.zig.zon`
+- `<artifacts_dir>/src/main.zig`
+- `<conversions_manifest>`
+
 
 ### Step 4: Feedback
  
