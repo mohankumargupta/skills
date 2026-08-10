@@ -173,6 +173,30 @@ observables:
 
 Choose sensible real-world defaults.
 
+### The `default` value has two consumers, not one
+
+`default` is not merely a plausible starting value for documentation
+purposes. It is read by two different downstream skills for two different
+purposes, and both MUST read this exact field rather than choosing their
+own value:
+
+1. **wokwi-customchip** encodes `default` as the value the simulated chip
+   actually emits over the bus (e.g. the register word the sensor reports
+   on first read).
+2. **wokwi-test-harness** asserts this same numeric value as the ground
+   truth the `qa_test` harness expects to see in serial output.
+
+If a downstream skill cannot find this field, that is a defect to report,
+not a gap to fill in with its own "sensible" number. Two independently
+chosen defaults for the same observable will not conflict at build time —
+they will conflict only at simulation time, as a test that either always
+passes against a fabricated ground truth or always fails for a reason
+invisible from either artifact alone. There is exactly one `default` per
+observable in this specification; it is the single source of truth for
+both the emitted value and the asserted value, full stop.
+
+
+
 Avoid
 
 - minimum values

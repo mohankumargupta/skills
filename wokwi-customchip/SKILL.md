@@ -83,6 +83,46 @@ Reuse patterns wherever possible.
 
 Write zig 0.16 code for the custom chip and save as `<artifacts_dir>/chip.zig`
 
+### Step 3a: Classify every chip input before wiring it up (mandatory)
+
+Not everything a chip needs at startup belongs behind `attrInit`. Before
+writing `chip_init()`, sort every input the chip needs into exactly one of
+two categories, and implement each category differently:
+
+**Environmental observables** — quantities a real sensor would measure
+from its physical surroundings, and that a user would plausibly want to
+change *while the simulation is running* to see the chip react (ambient
+temperature, humidity, pressure, light level, distance). These are the
+only inputs that should use `attrInit`/`attrInit_float`, and the only
+inputs `chip.json`'s `controls` array should expose as a live slider.
+
+**Fixed configuration / wiring parameters** — quantities that on real
+hardware are determined once, at board-assembly time, by how a pin is
+physically strapped (an I2C address selected by tying ADD0 to GND/V+/SDA/
+SCL; a mode pin; a resistor-set gain select). These must NOT use
+`attrInit`. Model them the way the real chip does:
+  - Add a `pinInit()` for the real strap pin (e.g. `"ADD0"`), read its
+    level in `chip_init()`, and derive the resulting value from that —
+    exactly as the datasheet's address table does.
+  - If the simulation genuinely has no need to vary it (the canonical
+    test spec only exercises one fixed address), it is legitimate to hard-
+    code the single supported value as a `const` and skip making it
+    configurable at all. A fixed constant that always matches the test
+    spec is safer than a fake "control" that invites a diagram.json
+    author to override it incorrectly.
+
+If you do use `attrInit` for a genuinely environmental value, document it
+in `<artifacts_dir>/attributes.md` (see manifest table below) including
+the Wokwi literal-format caveat (decimal only, never `0x`-prefixed). Do
+NOT add wiring/configuration parameters to that manifest as overridable
+attributes — document them instead as "fixed, derived from `<PIN>`" so
+the diagram-generation skill knows not to invent an `attrs` entry for them.
+
+| Attribute name | Category | Zig default | Wokwi attrs format | Notes |
+|---|---|---|---|---|
+| `temperature` | environmental | `21.0` (f64) | decimal string, may include a fractional part | Safe to expose as a `chip.json` range control |
+| `address` | fixed / wiring | n/a — derived from `ADD0` pin level at `chip_init()`, per datasheet Table 6-4 | **not an attribute — do not add to diagram.json attrs** | If the test spec only needs 0x48, hard-code `ADD0` as `input_pulldown` and skip a control entirely |
+
 # Validation
 
 ## Step 4: Add unit tests to chip.zig (mandatory)
@@ -131,7 +171,7 @@ evidence of correctness and must not be treated as such.
 
 ## copy files
 copy
-<artifacts_dir>/{build.zig, chip.zig, chip.wasm, wokwi-api.zig}
+<artifacts_dir>/{build.zig, chip.zig, chip.wasm, wokwi_api.zig}
 to
 <outputs_dir>
 
