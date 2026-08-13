@@ -1,3 +1,4 @@
+---
 name: wokwi-chip-diagram
 description: Create both wokwi chip.json and diagram.json from canonical test specification for device <device>
 ---

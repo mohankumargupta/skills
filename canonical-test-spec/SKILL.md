@@ -206,6 +206,17 @@ Avoid
 
 The objective is deterministic behaviour.
 
+
+### Units and typing conventions
+- Use plain-ASCII unit abbreviations in `units:` (`C` not `°C`, `%` not `pct`)
+  for consistency across devices; the `presentation.*.units` field may use the
+  degree symbol if desired for display, but `observables.*.units` should stay
+  plain-ASCII to avoid encoding issues in downstream code generation.
+- Use `type: int` for observables whose native register/protocol value is a
+  whole-number count with no fractional resolution (e.g. CO2 in ppm); use
+  `type: float` only when the device has sub-unit resolution.
+
+
 ---
 
 # Assumptions

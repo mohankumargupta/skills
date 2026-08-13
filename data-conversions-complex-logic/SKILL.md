@@ -47,6 +47,31 @@ restatement of the author's own arithmetic, and it means a bug in the
 primitive can't accidentally cancel out against the same bug in the
 test's hand-derivation.
 
+### Resolving contradictions within the spec itself (mandatory)
+
+Datasheets and generated specs sometimes contain two mutually-inconsistent
+statements about the same quantity — e.g. an inline formula in prose text
+that disagrees with the spec's own worked-example table, or two different
+timing constants for the same signal quoted in different sections. When this
+happens:
+
+1. **The worked-example table is authoritative over inline formula prose.**
+   Worked examples are the values downstream tests will assert against, so
+   implement to match them, not the prose formula, if they disagree.
+2. Record the discrepancy explicitly in `<conversions_manifest>` — cite both
+   conflicting statements, state which one was implemented, and why (usually
+   "the worked-example table is directly testable; the prose formula is not").
+3. Never invent a third value to split the difference.
+
+### Duplicate encodings of the same value (e.g. sign/magnitude ±0)
+
+Sign/magnitude and some offset-binary encodings can represent zero two ways
+(e.g. `0x00` and `0x80` in an 8-bit sign/magnitude field). Decoders must
+canonicalize both to the same real-world value; encoders must pick exactly one
+canonical byte for that value (document the choice in the manifest). Do not
+write an exhaustive "every byte round-trips" test without first excluding the
+non-canonical duplicate — such a test will fail for a correct implementation.
+
 ### Overflow / out-of-range policy (mandatory, per encode function)
 
 Every function that encodes a real-world value into a fixed-width

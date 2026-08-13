@@ -132,9 +132,20 @@ ESP_LOGI("<tag>", "Temperature = {:.1f} C", x);
 ESP_LOGI("<tag>", "Temperature = %.1f C", x);
 ```
 
+**Literal `%` characters in the template must also be escaped.** If
+`<spec>`'s `presentation.<observable>.template` contains a literal `%` (e.g.
+`"Humidity = {:.2f} %"` or a `%%`-style unit), the printf-family format string
+must escape it as `%%`, or the compiler will either misparse the following
+character as a conversion specifier or silently drop output. Always grep the
+generated yaml for a bare `%` inside an `ESP_LOGx`/lambda format string that
+is not immediately followed by another `%` or a valid specifier, in addition
+to the `{:` grep already required below.
+
+
 After generating the yaml, grep the generated file for any `{:` sequence
 inside a quoted `ESP_LOGx`/lambda string — its presence indicates this
 translation step was skipped and must be
+
 
 
 ## Numeric ground truth for assertions
